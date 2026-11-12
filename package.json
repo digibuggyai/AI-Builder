@@ -1,0 +1,11 @@
+{
+  "name": "ai-pc-builder",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint"
+  },
+  "packageManager": "pnpm@12.18.0"
+}
