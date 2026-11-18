@@ -1,18 +1,10 @@
-import {
-  boolean,
-  integer,
-  numeric,
-  pgEnum,
-  pgTable,
-  serial,
-  text,
-  timestamp,
-} from "drizzle-orm/pg-core";
+import { boolean, integer, numeric, pgEnum, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { memoryType } from "./_shared";
 
 // An enum = a column that only allows a fixed list of values
 export const cpuBrand = pgEnum("cpu_brand", ["Intel", "AMD"]);
-export const memoryType = pgEnum("memory_type", ["DDR4", "DDR5"]);
 
+// CPUs keep their own columns because brand is an enum here (only Intel or AMD).
 export const cpus = pgTable("cpus", {
   id: serial("id").primaryKey(),                  // 1, 2, 3... set automatically
   slug: text("slug").notNull().unique(),          // e.g. "amd-ryzen-5-7600"
