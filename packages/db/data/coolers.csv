@@ -1,0 +1,8 @@
+slug,brand,name,type,sockets,tdpRatingW,heightMm,radiatorMm
+noctua-nh-l9a-am5,Noctua,Noctua NH-L9a-AM5 Low Profile,Air,AM5|AM4,65,37,
+deepcool-ag400,DeepCool,DeepCool AG400,Air,AM4|AM5|LGA1700|LGA1851,220,150,
+arctic-freezer-36,Arctic,Arctic Freezer 36,Air,AM4|AM5|LGA1700|LGA1851,200,159,
+thermalright-peerless-assassin-120-se,Thermalright,Thermalright Peerless Assassin 120 SE,Air,AM4|AM5|LGA1700|LGA1851,245,155,
+noctua-nh-d15-g2,Noctua,Noctua NH-D15 G2,Air,AM4|AM5|LGA1700|LGA1851,250,168,
+deepcool-le520,DeepCool,DeepCool LE520 240mm AIO,Liquid,AM4|AM5|LGA1700|LGA1851,250,,240
+arctic-liquid-freezer-iii-360,Arctic,Arctic Liquid Freezer III 360 AIO,Liquid,AM4|AM5|LGA1700|LGA1851,300,,360

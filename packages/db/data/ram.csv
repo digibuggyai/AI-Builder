@@ -1,0 +1,8 @@
+slug,brand,name,memoryType,modules,capacityGb,speedMts,casLatency,heightMm,rgb
+corsair-vengeance-lpx-16gb-2x8-ddr4-3200,Corsair,Corsair Vengeance LPX 16GB (2x8GB) DDR4 3200 CL16,DDR4,2,16,3200,16,34,false
+gskill-ripjaws-v-32gb-2x16-ddr4-3600,G.Skill,G.Skill Ripjaws V 32GB (2x16GB) DDR4 3600 CL18,DDR4,2,32,3600,18,42,false
+kingston-fury-beast-16gb-2x8-ddr5-5600,Kingston,Kingston Fury Beast 16GB (2x8GB) DDR5 5600 CL40,DDR5,2,16,5600,40,35,false
+gskill-flare-x5-32gb-2x16-ddr5-6000,G.Skill,G.Skill Flare X5 32GB (2x16GB) DDR5 6000 CL30,DDR5,2,32,6000,30,33,false
+corsair-vengeance-rgb-32gb-2x16-ddr5-6000,Corsair,Corsair Vengeance RGB 32GB (2x16GB) DDR5 6000 CL36,DDR5,2,32,6000,36,44,true
+gskill-trident-z5-rgb-64gb-2x32-ddr5-6400,G.Skill,G.Skill Trident Z5 RGB 64GB (2x32GB) DDR5 6400 CL32,DDR5,2,64,6400,32,44,true
+kingston-fury-beast-64gb-4x16-ddr5-5600,Kingston,Kingston Fury Beast 64GB (4x16GB) DDR5 5600 CL40,DDR5,4,64,5600,40,35,false

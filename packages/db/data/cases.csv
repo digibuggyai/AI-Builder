@@ -1,0 +1,7 @@
+slug,brand,name,motherboardSupport,psuSupport,maxGpuLengthMm,maxCoolerHeightMm,radiatorSupportMm,drives25,drives35,color
+lian-li-lancool-216,Lian Li,Lian Li Lancool 216,ATX|Micro-ATX|Mini-ITX,ATX,392,180,240|280|360,3,2,Black
+corsair-4000d-airflow,Corsair,Corsair 4000D Airflow,ATX|Micro-ATX|Mini-ITX,ATX,360,170,240|280|360,2,2,Black
+nzxt-h5-flow,NZXT,NZXT H5 Flow,ATX|Micro-ATX|Mini-ITX,ATX,365,165,240|280,2,1,White
+deepcool-ch360,DeepCool,DeepCool CH360,ATX|Micro-ATX|Mini-ITX,ATX,380,175,240|360,2,2,Black
+lian-li-a3-matx,Lian Li,Lian Li A3-mATX,Micro-ATX|Mini-ITX,ATX|SFX,415,165,240|280|360,2,1,Black
+cooler-master-nr200p,Cooler Master,Cooler Master MasterBox NR200P,Mini-ITX,SFX|ATX,330,155,240|280,3,1,Black
