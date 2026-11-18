@@ -11,7 +11,9 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:check": "node scripts/check-connection.mjs",
-    "db:seed": "tsx scripts/seed.ts"
+    "db:seed": "tsx scripts/seed.ts",
+    "specs:extract": "tsx scripts/extract-specs.ts",
+    "prices:sync": "tsx scripts/sync-prices.ts"
   },
   "dependencies": {
     "csv-parse": "^7.0.3",

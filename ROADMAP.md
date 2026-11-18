@@ -19,7 +19,7 @@ Don't skip ahead. Each step uses what the earlier one taught.
 
 ```
 ┌──────────────────────┐      HTTPS/JSON      ┌───────────────────────┐
-│  apps/web (Next.js)  │  ─────────────────▶  │   apps/api (Hono)     │
+│ apps/frontend (Next) │  ─────────────────▶  │ apps/backend (Hono)   │
 │  UI: 3 builder modes │                      │   REST API + AI calls │
 └──────────────────────┘                      └──────────┬────────────┘
                                                          │
@@ -65,7 +65,7 @@ Everything is deployed on **Railway**, as separate services in one Railway proje
 
 ## Phase 1 — Project skeleton (days 2–3)
 
-- [ ] Create the pnpm + Turborepo monorepo: `apps/web`, `apps/api`, `packages/db`, `packages/compat`
+- [ ] Create the pnpm + Turborepo monorepo: `apps/frontend`, `apps/backend`, `packages/db`, `packages/compat`
 - [ ] Shared `tsconfig`, ESLint and Prettier
 - **You learn:** TypeScript basics (types, interfaces, functions, modules), how a monorepo works
 - **Done when:** `pnpm dev` starts both web and API locally

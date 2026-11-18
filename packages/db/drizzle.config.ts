@@ -1,7 +1,6 @@
 import { config } from "dotenv";
 import { defineConfig } from "drizzle-kit";
 
-// Load secrets from the .env file at the repo root
 config({ path: "../../.env" });
 
 if (!process.env.DATABASE_URL) {
@@ -9,8 +8,8 @@ if (!process.env.DATABASE_URL) {
 }
 
 export default defineConfig({
-  schema: "./src/schema/index.ts", // where our tables are defined
-  out: "./drizzle",                // where migration SQL files are saved
+  schema: "./src/schema/index.ts",
+  out: "./drizzle",
   dialect: "postgresql",
   dbCredentials: { url: process.env.DATABASE_URL },
 });

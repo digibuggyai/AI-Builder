@@ -17,5 +17,5 @@ export const psus = pgTable("psus", {
   efficiency: psuEfficiency("efficiency").notNull(),
   modular: psuModular("modular").notNull(),
   formFactor: psuFormFactor("form_factor").notNull().default("ATX"),
-  has12v2x6: boolean("has_12v_2x6").notNull().default(false), // new GPU power plug
+  has12v2x6: boolean("has_12v_2x6").notNull().default(false),
 });

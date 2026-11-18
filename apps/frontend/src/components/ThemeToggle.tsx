@@ -1,0 +1,28 @@
+"use client";
+
+import { Moon, Sun } from "lucide-react";
+
+export function ThemeToggle() {
+  function toggle() {
+    const root = document.documentElement;
+    const next = root.dataset.theme === "light" ? "dark" : "light";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label="Switch between light and dark theme"
+      title="Switch theme"
+      className="grid size-9 place-items-center rounded-lg border border-border bg-surface-2 text-muted transition hover:text-foreground"
+    >
+      <Sun className="size-4 light:hidden" aria-hidden />
+      <Moon className="hidden size-4 light:block" aria-hidden />
+    </button>
+  );
+}

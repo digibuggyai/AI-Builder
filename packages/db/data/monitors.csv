@@ -1,8 +1,1 @@
-slug,brand,name,sizeInch,widthPx,heightPx,refreshHz,panel,responseMs
-lg-24gs60f,LG,LG UltraGear 24GS60F 24-inch FHD 180Hz IPS,23.8,1920,1080,180,IPS,1.0
-msi-g255f,MSI,MSI G255F 24.5-inch FHD 180Hz IPS,24.5,1920,1080,180,IPS,1.0
-lg-27gs75q,LG,LG UltraGear 27GS75Q 27-inch QHD 180Hz IPS,27.0,2560,1440,180,IPS,1.0
-asus-tuf-vg27aq3a,ASUS,ASUS TUF Gaming VG27AQ3A 27-inch QHD 180Hz IPS,27.0,2560,1440,180,IPS,1.0
-msi-mag-271qpx-qd-oled-e2,MSI,MSI MAG 271QPX QD-OLED E2 27-inch QHD 240Hz,26.5,2560,1440,240,OLED,
-lg-27us550-w,LG,LG 27US550-W 27-inch 4K 60Hz IPS,27.0,3840,2160,60,IPS,5.0
-samsung-odyssey-g5-34,Samsung,Samsung Odyssey G5 34-inch WQHD 165Hz VA Ultrawide,34.0,3440,1440,165,VA,1.0
+slug,brand,name,sizeInch,widthPx,heightPx,refreshHz,panel,responseMs,url,priceRupees

@@ -1,5 +1,3 @@
-// Tests the database connection and prints the real error if it fails.
-// Run: pnpm --filter @pcb/db db:check
 import { config } from "dotenv";
 import postgres from "postgres";
 

@@ -1,36 +1,29 @@
-// The rules each CSV row must follow before it may enter the database.
 import { z } from "zod";
 
-// ---------- Helpers: turn CSV text into the right types ----------
-// Every CSV value arrives as text, e.g. "65", "true", "DDR4|DDR5".
-
-const int = z.coerce.number().int().positive();          // "65" → 65
-const optionalInt = z.preprocess(                         // "" → null
+const int = z.coerce.number().int().positive();
+const optionalInt = z.preprocess(
   (v) => (v === "" ? null : v),
   z.coerce.number().int().positive().nullable(),
 );
 const decimal = z.string().regex(/^\d+(\.\d+)?$/, "must be a number like 4.4");
 const optionalDecimal = z.preprocess((v) => (v === "" ? null : v), decimal.nullable());
 const optionalText = z.preprocess((v) => (v === "" ? null : v), z.string().nullable());
-// Careful: z.coerce.boolean() turns "false" into true! So we check the text ourselves.
 const bool = z.enum(["true", "false"]).transform((v) => v === "true");
-const list = z.string().transform((s) => s.split("|").map((x) => x.trim())); // "A|B" → ["A","B"]
+const list = z.string().transform((s) => s.split("|").map((x) => x.trim()));
 
-// ---------- Allowed values (must match the database enums) ----------
-const socket = z.enum(["AM4", "AM5", "LGA1700", "LGA1851"]); // a typo like "LGA 1700" fails here
+const socket = z.enum(["AM4", "AM5", "LGA1700", "LGA1851"]);
 const memory = z.enum(["DDR4", "DDR5"]);
 const formFactor = z.enum(["E-ATX", "ATX", "Micro-ATX", "Mini-ITX"]);
 const psuForm = z.enum(["ATX", "SFX"]);
 const pcie = z.coerce.number().int().min(3).max(5);
 
-// Columns every part has
 const base = {
   slug: z.string().regex(/^[a-z0-9-]+$/, "use lowercase letters, numbers and dashes"),
   brand: z.string().min(1),
   name: z.string().min(1),
+  url: z.preprocess((v) => (v === "" ? undefined : v), z.string().url().optional()),
+  priceRupees: z.preprocess((v) => (v === "" || v == null ? null : v), z.coerce.number().int().positive().nullable()),
 };
-
-// ---------- One schema per CSV file ----------
 
 export const cpuRow = z.object({
   ...base,

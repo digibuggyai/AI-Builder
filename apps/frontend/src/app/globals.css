@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+:root {
+  color-scheme: light;
+  --background: #f7f9fd;
+  --surface: #ffffff;
+  --surface-2: #eef2f8;
+  --border: #e3e8f1;
+  --border-strong: #d5dbea;
+  --foreground: #0e0f0c;
+  --muted: #5e6470;
+  --accent: #3863ff;
+  --accent-hover: #2f55eb;
+  --accent-text: #3863ff;
+  --accent-tint: rgb(56 99 255 / 0.10);
+  --accent-2: #6e44e8;
+  --accent-3: #14b8a6;
+  --accent-ink: #ffffff;
+  --ok: #1c7c3e;
+  --warn: #9a6b00;
+  --error: #c62e2e;
+
+  --card-bg: #ffffff;
+  --card-blur: 0px;
+  --card-shadow: 0 1px 2px #00000008, 0 4px 16px #0000000d;
+  --overlay-bg: rgb(255 255 255 / 0.88);
+  --overlay-shadow: 0 1px 3px #0000000a, 0 8px 24px #00000014;
+
+  --grid-line: rgb(27 42 74 / 0.06);
+  --spotlight: rgb(56 99 255 / 0.12);
+  --beam-opacity: 0;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #05060f;
+  --surface: rgb(186 214 247 / 0.04);
+  --surface-2: rgb(186 214 247 / 0.07);
+  --border: rgb(186 214 247 / 0.12);
+  --border-strong: rgb(186 214 247 / 0.24);
+  --foreground: #d8ecf8;
+  --muted: #9da7ba;
+  --accent: #4a6fff;
+  --accent-hover: #5b7cff;
+  --accent-text: #6f8fff;
+  --accent-tint: rgb(56 99 255 / 0.22);
+  --accent-2: #a98bff;
+  --accent-3: #2dd4bf;
+  --accent-ink: #ffffff;
+  --ok: #6fd3a8;
+  --warn: #f2c14e;
+  --error: #f08a8a;
+
+  --card-bg: rgb(186 214 247 / 0.04);
+  --card-blur: 24px;
+  --card-shadow:
+    0 16px 32px #0000004d,
+    inset 0 1px 1px rgb(216 236 248 / 0.18),
+    inset 0 24px 48px rgb(168 216 245 / 0.05);
+  --overlay-bg: rgb(11 14 26 / 0.84);
+  --overlay-shadow: 0 12px 32px #00000080, inset 0 1px 1px rgb(216 236 248 / 0.12);
+
+  --grid-line: rgb(186 214 247 / 0.06);
+  --spotlight: rgb(124 145 182 / 0.30);
+  --beam-opacity: 1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-text: var(--accent-text);
+  --color-accent-tint: var(--accent-tint);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-text);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-error: var(--error);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space);
+}
+
+@utility glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(var(--card-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--card-blur)) saturate(140%);
+  box-shadow: var(--card-shadow);
+}
+
+@utility glass-strong {
+  background: var(--overlay-bg);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: var(--overlay-shadow);
+}
+
+@utility btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  transition: background-color 200ms var(--ease), transform 200ms var(--ease), box-shadow 200ms var(--ease);
+  box-shadow: 0 1px 2px #00000014, 0 4px 12px rgb(56 99 255 / 0.25);
+  &:hover { background: var(--accent-hover); }
+  &:active { transform: scale(0.97); }
+  &:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+}
+
+@utility text-brand {
+  color: var(--accent-text);
+}
+
+.atmosphere {
+  background:
+    radial-gradient(60% 45% at 50% 0%, var(--spotlight), transparent 70%),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 50% 0 / 49px 49px,
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 49px 49px;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 35%, transparent 85%);
+}
+.beam {
+  opacity: var(--beam-opacity);
+}
+.beam::before {
+  content: "";
+  position: absolute;
+  top: -260px;
+  left: 58%;
+  width: 260px;
+  height: 1100px;
+  border-radius: 50%;
+  filter: blur(34px);
+  transform-origin: 50% 0;
+  background: linear-gradient(rgb(169 188 255 / 0.34), rgb(111 143 255 / 0.12) 35%, transparent 70%);
+  animation: beam 10s ease-in-out infinite alternate;
+}
+
+@keyframes up {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(90px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes beam {
+  from { opacity: 0.55; transform: rotate(30deg); }
+  to { opacity: 0.85; transform: rotate(38deg); }
+}
+@keyframes live-pulse {
+  from { box-shadow: 0 0 0 0 currentColor; }
+  to { box-shadow: 0 0 0 7px transparent; }
+}
+@keyframes drawer-in {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@utility animate-up {
+  animation: up 1.1s var(--ease) both;
+  animation-delay: var(--delay, 0s);
+}
+@utility animate-rise {
+  animation: rise 1.4s var(--ease) 0.35s both;
+}
+@utility animate-float {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@utility live-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: currentColor;
+  animation: live-pulse 1.8s ease-out infinite;
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
+}
+
+dialog.drawer[open] {
+  animation: drawer-in 0.45s var(--ease);
+}
+dialog.drawer[open]::backdrop {
+  animation: fade-in 0.3s ease;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  transition: background-color 250ms, color 250ms;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

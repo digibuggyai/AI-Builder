@@ -2,10 +2,13 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
 
-// Other apps call createDb(url) to talk to the database
 export function createDb(databaseUrl: string) {
   const client = postgres(databaseUrl);
   return drizzle(client, { schema });
 }
 
+export type Db = ReturnType<typeof createDb>;
+
 export * from "./schema";
+
+export { and, asc, desc, eq, inArray, notInArray } from "drizzle-orm";
