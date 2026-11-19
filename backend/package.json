@@ -16,6 +16,7 @@
     "prices:sync": "tsx scripts/sync-prices.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.10.0",
     "@hono/node-server": "^2.1.8",
     "@pcb/shared": "workspace:*",
     "csv-parse": "^7.0.3",
