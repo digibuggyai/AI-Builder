@@ -1,7 +1,8 @@
 packages:
-  - "apps/*"
-  - "packages/*"
+  - "frontend"
+  - "backend"
+  - "shared"
 allowBuilds:
   esbuild: true
-  sharp: true          # Next.js image resizing
-  unrs-resolver: true  # ESLint import checks
+  sharp: true
+  unrs-resolver: true
