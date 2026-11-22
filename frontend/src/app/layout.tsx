@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import Link from "next/link";
-import { FooterWordmark } from "@/components/FooterWordmark";
+import { SiteFooter } from "@/components/SiteFooter";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
@@ -60,13 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
         <main className="flex-1">{children}</main>
 
-        <footer className="overflow-hidden border-t border-border">
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-6 text-sm text-muted sm:flex-row sm:justify-between">
-            <p>© 2026 Digibuggy</p>
-            <p>Prices change often. Check the store page before you buy.</p>
-          </div>
-          <FooterWordmark />
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   );

@@ -187,15 +187,15 @@
 .wordmark {
   font-family: var(--font-bricolage);
   font-weight: 800;
-  font-size: clamp(4.5rem, 21vw, 19rem);
-  line-height: 0.8;
-  letter-spacing: -0.055em;
+  font-size: clamp(4rem, 15vw, 14rem);
+  line-height: 0.82;
+  letter-spacing: -0.05em;
   text-align: center;
   white-space: nowrap;
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  translate: 0 18%;
+  translate: 0 16%;
 }
 
 .wordmark-base {

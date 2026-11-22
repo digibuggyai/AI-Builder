@@ -127,7 +127,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="how" className="border-y border-border bg-surface">
+      <section id="how" className="scroll-mt-14 border-y border-border bg-surface">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <h2 className="font-display text-3xl font-bold tracking-tight">What gets checked</h2>
@@ -150,7 +150,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16">
+      <section id="faq" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16">
         <h2 className="font-display text-3xl font-bold tracking-tight">Questions</h2>
         <dl className="mt-8 grid gap-x-12 gap-y-8 md:grid-cols-2">
           {faqs.map((f) => (
