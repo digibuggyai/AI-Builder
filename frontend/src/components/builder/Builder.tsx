@@ -83,7 +83,7 @@ export function Builder({ catalog }: { catalog: Catalog }) {
     <div className="mx-auto max-w-6xl px-4 pt-8 pb-28 lg:pb-16">
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-2 border-b border-border pb-5">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Your build</h1>
+          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Your <em>build.</em></h1>
           <p className="mt-1 text-sm text-muted">Add parts in any order. Each one is checked against the rest.</p>
         </div>
         <p className="font-mono text-sm text-muted">
@@ -136,7 +136,7 @@ export function Builder({ catalog }: { catalog: Catalog }) {
                   : "No problems found"}
             </p>
           </div>
-          <a href="#summary" className="rounded-md border border-border-strong px-3 py-1.5 text-sm font-medium">
+          <a href="#summary" className="btn-secondary rounded-xl px-3 py-1.5 text-sm font-medium">
             Summary
           </a>
         </div>

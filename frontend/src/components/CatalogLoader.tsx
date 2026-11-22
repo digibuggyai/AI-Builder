@@ -13,9 +13,9 @@ export async function CatalogLoader({ children }: { children: (catalog: Catalog)
     console.error("Could not load parts:", err);
     return (
       <div className="mx-auto max-w-md px-4 py-24 text-center">
-        <h1 className="font-display text-2xl font-bold">We can&apos;t load parts right now</h1>
+        <h1 className="font-display text-2xl font-semibold">We can&apos;t load parts right now</h1>
         <p className="mt-2 text-muted">The parts server isn&apos;t answering. Try again in a minute.</p>
-        <a href="" className="btn-primary mt-6 inline-block rounded-md px-4 py-2 font-medium">
+        <a href="" className="btn-primary mt-6 inline-block rounded-xl px-4 py-2 font-medium">
           Try again
         </a>
         <Link href="/" className="mt-3 block text-sm text-muted hover:text-foreground">

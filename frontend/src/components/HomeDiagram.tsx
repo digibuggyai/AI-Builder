@@ -41,12 +41,12 @@ export function HomeDiagram() {
   const current = frames[frame]!;
 
   return (
-    <figure className="dot-grid rounded-2xl border border-border bg-surface p-6 sm:p-8">
-      <div className="mx-auto max-w-[320px]">
+    <figure className="dot-grid mx-auto w-full max-w-[400px] rounded-2xl border border-border bg-surface p-5">
+      <div className="mx-auto max-w-[250px]">
         <PcDiagram states={current.states} label="A PC being assembled part by part" />
       </div>
-      <figcaption className="mt-5 flex min-h-11 items-start gap-3 border-t border-border pt-4 text-sm" aria-live="polite">
-        <span className="font-mono text-xs text-muted tabular-nums">
+      <figcaption className="mt-4 flex min-h-10 items-start gap-3 border-t border-border pt-3 text-xs sm:text-sm" aria-live="polite">
+        <span className="font-mono text-xs text-muted tabular-nums">Example ·{" "}
           {String(frame + 1).padStart(2, "0")}/{String(frames.length).padStart(2, "0")}
         </span>
         <span className={toneClass[current.tone]}>{current.caption}</span>

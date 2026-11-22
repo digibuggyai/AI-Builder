@@ -15,6 +15,13 @@
       "when": 1794986378451,
       "tag": "0001_peaceful_mystique",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795354901654,
+      "tag": "0002_bitter_swordsman",
+      "breakpoints": true
     }
   ]
 }

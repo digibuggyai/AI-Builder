@@ -148,7 +148,7 @@ export function ImportPanel({ onImport }: { onImport: (selection: Selection) => 
                 placeholder={PLACEHOLDER}
                 rows={8}
                 aria-label="Parts list"
-                className="w-full resize-y rounded-lg border border-border-strong bg-background p-3 font-mono text-sm outline-none placeholder:text-muted focus:border-accent"
+                className="w-full resize-y btn-secondary rounded-xl bg-background p-3 font-mono text-sm outline-none placeholder:text-muted focus:border-accent"
               />
             ) : preview ? (
               <div className="relative inline-block">
@@ -202,7 +202,7 @@ export function ImportPanel({ onImport }: { onImport: (selection: Selection) => 
               type="button"
               onClick={submit}
               disabled={!canSubmit}
-              className="btn-primary inline-flex items-center gap-2 rounded-lg px-4 py-2 font-medium"
+              className="btn-primary inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium"
             >
               {state.status === "busy" && <Loader2 className="size-4 animate-spin" aria-hidden />}
               {state.status === "busy" ? "Reading your list…" : "Import and fill"}

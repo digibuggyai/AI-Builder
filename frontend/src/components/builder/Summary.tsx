@@ -101,7 +101,7 @@ export function Summary({ build, issues, total, wattage, chosen, onReset }: Prop
             type="button"
             onClick={share}
             disabled={chosen === 0}
-            className="btn-primary flex-1 rounded-md px-3 py-2 text-sm font-medium"
+            className="btn-primary flex-1 rounded-xl px-3 py-2 text-sm font-medium"
           >
             {copied ? "Link copied" : "Copy share link"}
           </button>
@@ -109,7 +109,7 @@ export function Summary({ build, issues, total, wattage, chosen, onReset }: Prop
             type="button"
             onClick={onReset}
             disabled={chosen === 0}
-            className="rounded-md border border-border-strong px-3 py-2 text-sm font-medium hover:border-foreground disabled:cursor-not-allowed disabled:opacity-50"
+            className="btn-secondary rounded-xl px-3 py-2 text-sm font-medium hover:border-foreground disabled:cursor-not-allowed disabled:opacity-50"
           >
             Clear
           </button>

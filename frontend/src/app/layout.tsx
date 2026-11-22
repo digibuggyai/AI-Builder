@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { JetBrains_Mono, Manrope, Sora } from "next/font/google";
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"], weight: ["500", "600", "700", "800"] });
-const plexSans = IBM_Plex_Sans({ variable: "--font-plex-sans", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
-const plexMono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"], weight: ["400", "500"] });
+const sora = Sora({ variable: "--font-sora", subsets: ["latin"] });
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
+const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Digibuggy PC Builder",
@@ -28,32 +28,33 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-theme="dark"
       suppressHydrationWarning
-      className={`${bricolage.variable} ${plexSans.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${sora.variable} ${manrope.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="flex min-h-full flex-col font-sans">
-        <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
-          <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4">
+        <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
+          <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
             <Link href="/" aria-label="Digibuggy PC Builder home" className="flex items-center gap-3">
               <img src="/brand/digibuggy-logo-white.png" alt="Digibuggy" width={1920} height={214} className="h-[18px] w-auto light:hidden" />
               <img src="/brand/digibuggy-logo-dark.png" alt="Digibuggy" width={1920} height={214} className="hidden h-[18px] w-auto light:block" />
-              <span className="border-l border-border-strong pl-3 font-display text-sm font-semibold tracking-tight text-muted">
-                PC Builder
-              </span>
+              <span className="border-l border-border-strong pl-3 font-display text-sm font-light tracking-wide text-muted">PC Builder</span>
             </Link>
             <div className="flex items-center gap-1">
               {nav.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="hidden rounded-md px-3 py-1.5 text-sm text-muted hover:bg-surface-2 hover:text-foreground sm:block"
+                  className="hidden px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground sm:block"
                 >
                   {item.label}
                 </Link>
               ))}
               <ThemeToggle />
+              <Link href="/beginner" className="btn-primary ml-2 hidden rounded-xl px-4 py-1.5 text-sm font-semibold sm:block">
+                Start building
+              </Link>
             </div>
           </nav>
         </header>

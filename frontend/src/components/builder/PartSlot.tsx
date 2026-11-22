@@ -76,7 +76,7 @@ export function PartSlot({ category, part, available, issues, onChoose, onRemove
             type="button"
             onClick={onChoose}
             disabled={available === 0}
-            className="rounded-md border border-border-strong px-3 py-1.5 text-sm font-medium hover:border-foreground disabled:cursor-not-allowed disabled:opacity-50"
+            className="btn-secondary rounded-xl px-3 py-1.5 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50"
           >
             Add {meta.noun}
           </button>

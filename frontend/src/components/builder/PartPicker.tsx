@@ -130,7 +130,7 @@ function PickerBody({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search by name or brand"
-                className="w-full rounded-md border border-border-strong bg-background py-1.5 pr-3 pl-8 text-sm outline-none placeholder:text-muted focus:border-accent"
+                className="w-full btn-secondary rounded-xl bg-background py-1.5 pr-3 pl-8 text-sm outline-none placeholder:text-muted focus:border-accent"
               />
             </label>
             <label>
@@ -138,7 +138,7 @@ function PickerBody({
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value as Sort)}
-                className="h-full rounded-md border border-border-strong bg-background px-2 text-sm outline-none focus:border-accent"
+                className="h-full btn-secondary rounded-xl bg-background px-2 text-sm outline-none focus:border-accent"
               >
                 <option value="price-asc">Price, low to high</option>
                 <option value="price-desc">Price, high to low</option>

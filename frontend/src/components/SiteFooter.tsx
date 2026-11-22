@@ -17,7 +17,6 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     links: [
       { label: "How it works", href: "/#how" },
       { label: "Import a build list", href: "/advanced" },
-      { label: "Questions", href: "/#faq" },
     ],
   },
   {
@@ -45,7 +44,7 @@ export function SiteFooter() {
               <span className="border-l border-border-strong pl-3 font-display text-sm font-semibold text-muted">PC Builder</span>
             </Link>
             <p className="mt-5 max-w-sm text-muted">
-              Build a PC that works the first time. Every part checked for fit, with prices in rupees.
+              Pick parts and see straight away whether they fit together.
             </p>
             {SOCIAL_LINKS.length > 0 && (
               <ul className="mt-6 flex gap-3">

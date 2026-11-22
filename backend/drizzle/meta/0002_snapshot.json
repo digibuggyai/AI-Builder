@@ -1,0 +1,1511 @@
+{
+  "id": "02558be8-2fc6-42ef-ba31-3621933d215b",
+  "prevId": "45408044-275d-4d9d-a1b9-5956cec06022",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.cpus": {
+      "name": "cpus",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "cpu_brand",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "socket": {
+          "name": "socket",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cores": {
+          "name": "cores",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "threads": {
+          "name": "threads",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "base_clock_ghz": {
+          "name": "base_clock_ghz",
+          "type": "numeric(4, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "boost_clock_ghz": {
+          "name": "boost_clock_ghz",
+          "type": "numeric(4, 2)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tdp_w": {
+          "name": "tdp_w",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "memory_types": {
+          "name": "memory_types",
+          "type": "memory_type[]",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_memory_speed_mts": {
+          "name": "max_memory_speed_mts",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "has_integrated_graphics": {
+          "name": "has_integrated_graphics",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "pcie_version": {
+          "name": "pcie_version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "cpus_slug_unique": {
+          "name": "cpus_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.gpus": {
+      "name": "gpus",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "chip_maker": {
+          "name": "chip_maker",
+          "type": "gpu_chip_maker",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chipset": {
+          "name": "chipset",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vram_gb": {
+          "name": "vram_gb",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "length_mm": {
+          "name": "length_mm",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "slot_width": {
+          "name": "slot_width",
+          "type": "numeric(2, 1)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tdp_w": {
+          "name": "tdp_w",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recommended_psu_w": {
+          "name": "recommended_psu_w",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "power_connectors": {
+          "name": "power_connectors",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pcie_version": {
+          "name": "pcie_version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "gpus_slug_unique": {
+          "name": "gpus_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.motherboards": {
+      "name": "motherboards",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "socket": {
+          "name": "socket",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chipset": {
+          "name": "chipset",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "form_factor": {
+          "name": "form_factor",
+          "type": "form_factor",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "memory_type": {
+          "name": "memory_type",
+          "type": "memory_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ram_slots": {
+          "name": "ram_slots",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_ram_gb": {
+          "name": "max_ram_gb",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_ram_speed_mts": {
+          "name": "max_ram_speed_mts",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "m2_slots": {
+          "name": "m2_slots",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sata_ports": {
+          "name": "sata_ports",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pcie_version": {
+          "name": "pcie_version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "has_wifi": {
+          "name": "has_wifi",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "motherboards_slug_unique": {
+          "name": "motherboards_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.ram_kits": {
+      "name": "ram_kits",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "memory_type": {
+          "name": "memory_type",
+          "type": "memory_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "modules": {
+          "name": "modules",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "capacity_gb": {
+          "name": "capacity_gb",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "speed_mts": {
+          "name": "speed_mts",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cas_latency": {
+          "name": "cas_latency",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "height_mm": {
+          "name": "height_mm",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rgb": {
+          "name": "rgb",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "ram_kits_slug_unique": {
+          "name": "ram_kits_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.storage": {
+      "name": "storage",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "type": {
+          "name": "type",
+          "type": "storage_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "capacity_gb": {
+          "name": "capacity_gb",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pcie_version": {
+          "name": "pcie_version",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "read_mbps": {
+          "name": "read_mbps",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "write_mbps": {
+          "name": "write_mbps",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "storage_slug_unique": {
+          "name": "storage_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.psus": {
+      "name": "psus",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "wattage": {
+          "name": "wattage",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "efficiency": {
+          "name": "efficiency",
+          "type": "psu_efficiency",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "modular": {
+          "name": "modular",
+          "type": "psu_modular",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "form_factor": {
+          "name": "form_factor",
+          "type": "psu_form_factor",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'ATX'"
+        },
+        "has_12v_2x6": {
+          "name": "has_12v_2x6",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "psus_slug_unique": {
+          "name": "psus_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.coolers": {
+      "name": "coolers",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "type": {
+          "name": "type",
+          "type": "cooler_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sockets": {
+          "name": "sockets",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tdp_rating_w": {
+          "name": "tdp_rating_w",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "height_mm": {
+          "name": "height_mm",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "radiator_mm": {
+          "name": "radiator_mm",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "coolers_slug_unique": {
+          "name": "coolers_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.cases": {
+      "name": "cases",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "motherboard_support": {
+          "name": "motherboard_support",
+          "type": "form_factor[]",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "psu_support": {
+          "name": "psu_support",
+          "type": "psu_form_factor[]",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_gpu_length_mm": {
+          "name": "max_gpu_length_mm",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_cooler_height_mm": {
+          "name": "max_cooler_height_mm",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "radiator_support_mm": {
+          "name": "radiator_support_mm",
+          "type": "integer[]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "drives_2_5": {
+          "name": "drives_2_5",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "drives_3_5": {
+          "name": "drives_3_5",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "color": {
+          "name": "color",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "cases_slug_unique": {
+          "name": "cases_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.monitors": {
+      "name": "monitors",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "brand": {
+          "name": "brand",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "size_inch": {
+          "name": "size_inch",
+          "type": "numeric(3, 1)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "width_px": {
+          "name": "width_px",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "height_px": {
+          "name": "height_px",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "refresh_hz": {
+          "name": "refresh_hz",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "panel": {
+          "name": "panel",
+          "type": "panel_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "response_ms": {
+          "name": "response_ms",
+          "type": "numeric(3, 1)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "monitors_slug_unique": {
+          "name": "monitors_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.listings": {
+      "name": "listings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "part_category": {
+          "name": "part_category",
+          "type": "part_category",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "part_id": {
+          "name": "part_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "retailer_id": {
+          "name": "retailer_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "url": {
+          "name": "url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price_paise": {
+          "name": "price_paise",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "in_stock": {
+          "name": "in_stock",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "last_checked_at": {
+          "name": "last_checked_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "listings_retailer_url_idx": {
+          "name": "listings_retailer_url_idx",
+          "columns": [
+            {
+              "expression": "retailer_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "url",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "listings_part_idx": {
+          "name": "listings_part_idx",
+          "columns": [
+            {
+              "expression": "part_category",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "part_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "listings_retailer_id_retailers_id_fk": {
+          "name": "listings_retailer_id_retailers_id_fk",
+          "tableFrom": "listings",
+          "tableTo": "retailers",
+          "columnsFrom": [
+            "retailer_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.price_history": {
+      "name": "price_history",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "listing_id": {
+          "name": "listing_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price_paise": {
+          "name": "price_paise",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "in_stock": {
+          "name": "in_stock",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recorded_at": {
+          "name": "recorded_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "price_history_listing_time_idx": {
+          "name": "price_history_listing_time_idx",
+          "columns": [
+            {
+              "expression": "listing_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "recorded_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "price_history_listing_id_listings_id_fk": {
+          "name": "price_history_listing_id_listings_id_fk",
+          "tableFrom": "price_history",
+          "tableTo": "listings",
+          "columnsFrom": [
+            "listing_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.retailers": {
+      "name": "retailers",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "website_url": {
+          "name": "website_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "retailers_name_unique": {
+          "name": "retailers_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.build_items": {
+      "name": "build_items",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "build_id": {
+          "name": "build_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "part_category": {
+          "name": "part_category",
+          "type": "part_category",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "part_id": {
+          "name": "part_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 1
+        },
+        "price_paise": {
+          "name": "price_paise",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "build_items_build_idx": {
+          "name": "build_items_build_idx",
+          "columns": [
+            {
+              "expression": "build_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "build_items_build_id_builds_id_fk": {
+          "name": "build_items_build_id_builds_id_fk",
+          "tableFrom": "build_items",
+          "tableTo": "builds",
+          "columnsFrom": [
+            "build_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.builds": {
+      "name": "builds",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mode": {
+          "name": "mode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "use_case": {
+          "name": "use_case",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "budget_paise": {
+          "name": "budget_paise",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_paise": {
+          "name": "total_paise",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.form_factor": {
+      "name": "form_factor",
+      "schema": "public",
+      "values": [
+        "E-ATX",
+        "ATX",
+        "Micro-ATX",
+        "Mini-ITX"
+      ]
+    },
+    "public.memory_type": {
+      "name": "memory_type",
+      "schema": "public",
+      "values": [
+        "DDR4",
+        "DDR5"
+      ]
+    },
+    "public.part_category": {
+      "name": "part_category",
+      "schema": "public",
+      "values": [
+        "cpu",
+        "gpu",
+        "motherboard",
+        "ram",
+        "storage",
+        "psu",
+        "cooler",
+        "case",
+        "monitor"
+      ]
+    },
+    "public.cpu_brand": {
+      "name": "cpu_brand",
+      "schema": "public",
+      "values": [
+        "Intel",
+        "AMD"
+      ]
+    },
+    "public.gpu_chip_maker": {
+      "name": "gpu_chip_maker",
+      "schema": "public",
+      "values": [
+        "NVIDIA",
+        "AMD",
+        "Intel"
+      ]
+    },
+    "public.storage_type": {
+      "name": "storage_type",
+      "schema": "public",
+      "values": [
+        "NVMe",
+        "SATA SSD",
+        "HDD"
+      ]
+    },
+    "public.psu_efficiency": {
+      "name": "psu_efficiency",
+      "schema": "public",
+      "values": [
+        "80+ White",
+        "80+ Bronze",
+        "80+ Gold",
+        "80+ Platinum",
+        "80+ Titanium"
+      ]
+    },
+    "public.psu_form_factor": {
+      "name": "psu_form_factor",
+      "schema": "public",
+      "values": [
+        "ATX",
+        "SFX"
+      ]
+    },
+    "public.psu_modular": {
+      "name": "psu_modular",
+      "schema": "public",
+      "values": [
+        "Full",
+        "Semi",
+        "Non"
+      ]
+    },
+    "public.cooler_type": {
+      "name": "cooler_type",
+      "schema": "public",
+      "values": [
+        "Air",
+        "Liquid"
+      ]
+    },
+    "public.panel_type": {
+      "name": "panel_type",
+      "schema": "public",
+      "values": [
+        "IPS",
+        "VA",
+        "TN",
+        "OLED"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

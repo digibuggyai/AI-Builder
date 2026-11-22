@@ -155,17 +155,17 @@ function SetupStep({
 }) {
   return (
     <>
-      <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">What are you building for?</h1>
+      <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">What are you <em>building for?</em></h1>
       <p className="mt-2 text-muted">This sets the minimum specs and how the budget is split between parts.</p>
       <div className="mt-6">
         <UseCasePicker value={useCase} onChange={onUseCase} compact />
       </div>
-      <h2 className="mt-10 font-display text-2xl font-bold tracking-tight">Budget for the PC</h2>
+      <h2 className="mt-10 font-display text-2xl font-semibold tracking-tight">Budget for the PC</h2>
       <div className="mt-4 rounded-2xl border border-border bg-surface p-6">
         <BudgetInput value={budget} onChange={onBudget} />
       </div>
       <div className="mt-8 flex justify-end">
-        <button type="button" onClick={onNext} className="btn-primary inline-flex items-center gap-2 rounded-lg px-5 py-3 font-medium">
+        <button type="button" onClick={onNext} className="btn-primary inline-flex items-center gap-2 rounded-xl px-5 py-3 font-medium">
           Start with the processor <ArrowRight className="size-4" aria-hidden />
         </button>
       </div>
@@ -203,7 +203,7 @@ function PartStepView({
 
   return (
     <>
-      <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">Choose a {meta.noun}</h1>
+      <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Choose a <em>{meta.noun}.</em></h1>
       <p className="mt-2 text-muted">{meta.hint}</p>
       <p className="mt-3 font-mono text-sm text-muted">
         Suggested spend: <span className="text-foreground">about {formatINR(Math.round(target / 500) * 500)}</span>
@@ -235,7 +235,7 @@ function PartStepView({
           type="button"
           onClick={onNext}
           disabled={!selected}
-          className="btn-primary inline-flex items-center gap-2 rounded-lg px-5 py-2.5 font-medium"
+          className="btn-primary inline-flex items-center gap-2 rounded-xl px-5 py-2.5 font-medium"
         >
           Continue <ArrowRight className="size-4" aria-hidden />
         </button>
@@ -406,7 +406,7 @@ function ReviewStep({
 
   return (
     <>
-      <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+      <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
         Your build: <span className="font-mono">{formatINR(spent)}</span>
       </h1>
       <p className={`mt-2 ${diff >= 0 ? "text-ok" : "text-error"}`}>
@@ -432,7 +432,7 @@ function ReviewStep({
         <button type="button" onClick={onBack} className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground">
           <ArrowLeft className="size-4" aria-hidden /> Back
         </button>
-        <Link href={advancedHref} className="btn-primary inline-flex items-center gap-2 rounded-lg px-5 py-2.5 font-medium">
+        <Link href={advancedHref} className="btn-primary inline-flex items-center gap-2 rounded-xl px-5 py-2.5 font-medium">
           Open in Advanced to fine-tune <ArrowRight className="size-4" aria-hidden />
         </Link>
       </div>

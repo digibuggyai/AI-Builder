@@ -9,7 +9,7 @@ export function BudgetInput({ value, onChange }: { value: number; onChange: (rup
       <label htmlFor="budget" className="sr-only">
         Budget in rupees
       </label>
-      <p className="font-mono text-5xl font-medium tracking-tight tabular-nums sm:text-6xl">{formatINR(value)}</p>
+      <p className="font-display text-6xl font-light tracking-[-0.03em] tabular-nums sm:text-7xl">{formatINR(value)}</p>
       <input
         id="budget"
         type="range"

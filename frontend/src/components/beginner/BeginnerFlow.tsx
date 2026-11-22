@@ -122,7 +122,7 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
 
       {step === "use" && (
         <section key="use" className="step-in mx-auto mt-10 max-w-4xl">
-          <h1 className="font-display text-4xl font-bold tracking-tight">What will you mostly use it for?</h1>
+          <h1 className="font-display text-4xl font-semibold tracking-tight">What will you mostly <em>use it for?</em></h1>
           <p className="mt-2 text-muted">Pick the closest one. It decides which parts matter most.</p>
           <div className="mt-8">
             <UseCasePicker
@@ -139,7 +139,7 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
 
       {step === "budget" && useCase && (
         <section key="budget" className="step-in mx-auto mt-10 max-w-2xl">
-          <h1 className="font-display text-4xl font-bold tracking-tight">How much do you want to spend?</h1>
+          <h1 className="font-display text-4xl font-semibold tracking-tight">How much do you <em>want to spend?</em></h1>
           <p className="mt-2 text-muted">
             For a {USE_CASES[useCase].label.toLowerCase()} PC. Just the PC: monitor, keyboard and mouse aren&apos;t included.
           </p>
@@ -150,7 +150,7 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
             <button type="button" onClick={() => setStep("use")} className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-foreground">
               <ArrowLeft className="size-4" aria-hidden /> Change use
             </button>
-            <button type="button" onClick={() => run(useCase, budget)} className="btn-primary inline-flex items-center gap-2 rounded-lg px-5 py-3 font-medium">
+            <button type="button" onClick={() => run(useCase, budget)} className="btn-primary inline-flex items-center gap-2 rounded-xl px-5 py-3 font-medium">
               Build my PC <ArrowRight className="size-4" aria-hidden />
             </button>
           </div>
@@ -179,15 +179,15 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
             </div>
           ) : result.status === "error" ? (
             <div className="mx-auto max-w-lg rounded-2xl border border-border bg-surface p-8 text-center">
-              <h1 className="font-display text-2xl font-bold">We couldn&apos;t reach the parts server</h1>
+              <h1 className="font-display text-2xl font-semibold">We couldn&apos;t reach the parts server</h1>
               <p className="mt-2 text-muted">{result.message}</p>
-              <button type="button" onClick={() => run(useCase, budget)} className="btn-primary mt-6 rounded-md px-4 py-2 font-medium">
+              <button type="button" onClick={() => run(useCase, budget)} className="btn-primary mt-6 rounded-xl px-4 py-2 font-medium">
                 Try again
               </button>
             </div>
           ) : result.status === "none" ? (
             <div className="mx-auto max-w-lg rounded-2xl border border-border bg-surface p-8">
-              <h1 className="font-display text-2xl font-bold">{formatINR(budget)} isn&apos;t quite enough</h1>
+              <h1 className="font-display text-2xl font-semibold">{formatINR(budget)} isn&apos;t quite enough</h1>
               <p className="mt-2 text-muted">{result.reason}</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 {result.cheapest != null && (
@@ -198,12 +198,12 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
                       setBudget(next);
                       void run(useCase, next);
                     }}
-                    className="btn-primary rounded-md px-4 py-2 font-medium"
+                    className="btn-primary rounded-xl px-4 py-2 font-medium"
                   >
                     Try {formatINR(Math.ceil(result.cheapest / 5_000) * 5_000)}
                   </button>
                 )}
-                <button type="button" onClick={() => setStep("budget")} className="rounded-md border border-border-strong px-4 py-2 font-medium">
+                <button type="button" onClick={() => setStep("budget")} className="btn-secondary rounded-xl px-4 py-2 font-medium">
                   Change budget
                 </button>
               </div>
@@ -259,16 +259,16 @@ function BeginnerResult({
           <p className="font-mono text-sm text-muted">
             {USE_CASES[useCase].label} · budget {formatINR(budget)}
           </p>
-          <h1 className="mt-2 font-display text-4xl font-bold tracking-tight sm:text-5xl">
+          <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
             Your PC comes to <span className="font-mono">{formatINR(total)}</span>
           </h1>
           <p className="mt-2 text-ok">{formatINR(budget - total)} under budget</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Link href={advancedHref} className="btn-primary inline-flex items-center gap-2 rounded-lg px-4 py-2.5 font-medium">
+          <Link href={advancedHref} className="btn-primary inline-flex items-center gap-2 rounded-xl px-4 py-2.5 font-medium">
             Customize in Advanced <ArrowRight className="size-4" aria-hidden />
           </Link>
-          <button type="button" onClick={onCopy} className="inline-flex items-center gap-1.5 rounded-lg border border-border-strong px-4 py-2.5 font-medium">
+          <button type="button" onClick={onCopy} className="inline-flex items-center gap-1.5 btn-secondary rounded-xl px-4 py-2.5 font-medium">
             <Link2 className="size-4" aria-hidden /> {copied ? "Copied" : "Copy link"}
           </button>
         </div>

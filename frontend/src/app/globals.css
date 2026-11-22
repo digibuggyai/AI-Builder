@@ -4,58 +4,66 @@
 
 :root {
   color-scheme: light;
-  --background: #f6f7fb;
+  --background: #fafaf7;
   --surface: #ffffff;
-  --surface-2: #f0f2f7;
-  --border: #e2e5ee;
-  --border-strong: #cdd2de;
-  --foreground: #0e1116;
-  --muted: #5b6473;
-  --accent: #3b5bfd;
-  --accent-hover: #2c49e6;
-  --accent-text: #2f4ee0;
-  --accent-tint: #eceffe;
-  --accent-ink: #ffffff;
-  --ok: #138a52;
-  --ok-tint: #e6f6ee;
-  --warn: #a16207;
-  --warn-tint: #fdf3dc;
-  --error: #d23f3f;
-  --error-tint: #fdeaea;
-  --diagram-line: #bfc6d4;
-  --diagram-fill: #f3f5fa;
-  --wm-edge: #e4e7ee;
-  --wm-center: #b9c0cc;
-  --wm-glow: #3b5bfd;
-  --wm-shadow: rgb(59 91 253 / 0.45);
+  --surface-2: #f2f1ec;
+  --border: #e6e4dd;
+  --border-strong: #d1cec4;
+  --foreground: #15140f;
+  --muted: #66635b;
+  --dim: #8f8b81;
+  --accent: #e8a317;
+  --accent-hover: #d4930c;
+  --accent-text: #a86d00;
+  --accent-tint: #fdf3dc;
+  --accent-ink: #1a1305;
+  --btn-bg: #e8a317;
+  --btn-ink: #1a1305;
+  --btn-bg-hover: #f2b331;
+  --ok: #1f7a46;
+  --ok-tint: #e4f2e9;
+  --warn: #b45309;
+  --warn-tint: #fdf0dc;
+  --error: #c2362f;
+  --error-tint: #fbe8e6;
+  --diagram-line: #cfcbc0;
+  --diagram-fill: #f4f3ee;
+  --wm-edge: #eceae3;
+  --wm-center: #c9c5ba;
+  --wm-glow: #e8a317;
+  --wm-shadow: rgb(232 163 23 / 0.45);
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --background: #0a0b0f;
-  --surface: #12141a;
-  --surface-2: #1a1d25;
-  --border: #242833;
-  --border-strong: #343a48;
-  --foreground: #eceff5;
-  --muted: #8f98a8;
-  --accent: #5b7bff;
-  --accent-hover: #7690ff;
-  --accent-text: #93a8ff;
-  --accent-tint: #1a2140;
-  --accent-ink: #ffffff;
-  --ok: #34d399;
-  --ok-tint: #0f2a20;
-  --warn: #fbbf24;
-  --warn-tint: #2d2410;
-  --error: #f87171;
-  --error-tint: #2f1517;
-  --diagram-line: #3a4150;
-  --diagram-fill: #151821;
-  --wm-edge: #2a2e37;
-  --wm-center: #505664;
-  --wm-glow: #ffffff;
-  --wm-shadow: rgb(147 168 255 / 0.55);
+  --background: #0b0b0d;
+  --surface: #131316;
+  --surface-2: #1b1b1f;
+  --border: #25252a;
+  --border-strong: #36363d;
+  --foreground: #efeee9;
+  --muted: #9a9890;
+  --dim: #6e6c66;
+  --accent: #f5b53d;
+  --accent-hover: #ffc75e;
+  --accent-text: #f7c25c;
+  --accent-tint: #2a2110;
+  --accent-ink: #1a1305;
+  --btn-bg: #f5b53d;
+  --btn-ink: #1a1305;
+  --btn-bg-hover: #ffc75e;
+  --ok: #5ccf8e;
+  --ok-tint: #0e2218;
+  --warn: #f59e0b;
+  --warn-tint: #2a1d0b;
+  --error: #f0776c;
+  --error-tint: #2a1513;
+  --diagram-line: #35353b;
+  --diagram-fill: #121215;
+  --wm-edge: #1e1e22;
+  --wm-center: #4b4a4f;
+  --wm-glow: #ffd27a;
+  --wm-shadow: rgb(245 181 61 / 0.55);
 }
 
 @theme inline {
@@ -66,6 +74,7 @@
   --color-border-strong: var(--border-strong);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-dim: var(--dim);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-text: var(--accent-text);
@@ -77,18 +86,34 @@
   --color-warn-tint: var(--warn-tint);
   --color-error: var(--error);
   --color-error-tint: var(--error-tint);
-  --font-sans: var(--font-plex-sans);
-  --font-mono: var(--font-plex-mono);
-  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-jetbrains);
+  --font-display: var(--font-sora);
 }
 
 @utility btn-primary {
-  background: var(--accent);
-  color: var(--accent-ink);
-  transition: background-color 120ms ease, transform 120ms ease;
-  &:hover { background: var(--accent-hover); }
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.25) inset, 0 8px 20px -10px rgb(232 163 23 / 0.6);
+  transition: background-color 150ms ease-out, transform 150ms ease-out;
+  &:hover { background: var(--btn-bg-hover); }
   &:active { transform: translateY(1px); }
-  &:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  &:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+}
+
+@utility btn-secondary {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border-strong);
+  transition: border-color 150ms ease-out, background-color 150ms ease-out;
+  &:hover { border-color: var(--accent); background: var(--accent-tint); }
+  &:active { transform: translateY(1px); }
+}
+
+@utility hex-grid {
+  background-color: var(--border-strong);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48' viewBox='0 0 28 48'%3E%3Cpath d='M14 0 L28 8 L28 24 L14 32 L0 24 L0 8 Z M14 32 L14 48' fill='none' stroke='black' stroke-width='1'/%3E%3C/svg%3E");
+  mask-size: 28px 48px;
 }
 
 @utility dot-grid {
@@ -126,7 +151,7 @@
 .pc .outline[data-state] { fill: transparent; }
 .pc .line[data-state] { fill: none; stroke-dasharray: none; }
 .pc .cooler[data-state] { fill-opacity: 0.6; }
-.pc text { font-family: var(--font-plex-mono); font-size: 9px; letter-spacing: 0.04em; fill: var(--muted); stroke: none; }
+.pc text { font-family: var(--font-jetbrains); font-size: 9px; letter-spacing: 0.04em; fill: var(--muted); stroke: none; }
 .pc text[data-state] { stroke: none; stroke-dasharray: none; }
 .pc text[data-state="empty"] { fill: var(--muted); }
 .pc text[data-state="ok"] { fill: var(--accent-text); }
@@ -185,7 +210,7 @@
 }
 
 .wordmark {
-  font-family: var(--font-bricolage);
+  font-family: var(--font-sora);
   font-weight: 800;
   font-size: clamp(4rem, 15vw, 14rem);
   line-height: 1.05;
@@ -218,6 +243,16 @@ dialog.drawer::backdrop {
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+h1, h2, h3, .font-display {
+  text-wrap: balance;
+}
+
+em {
+  font-style: normal;
+  font-weight: 300;
+  color: var(--accent-text);
 }
 
 :focus-visible {
