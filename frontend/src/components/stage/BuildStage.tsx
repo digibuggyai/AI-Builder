@@ -9,7 +9,7 @@ import { PartArt } from "./PartArt";
 type Region = { left: number; top: number; width: number; height: number };
 type Photo = { src: string; alt: string; regions: Record<Exclude<Category, "monitor">, Region> };
 
-const PHOTOS: Record<"white" | "black", Photo> = {
+const PHOTOS: Record<"white", Photo> = {
   white: {
     src: "/builds/white.jpg",
     alt: "A white Digibuggy build with lit fans",
@@ -22,20 +22,6 @@ const PHOTOS: Record<"white" | "black", Photo> = {
       gpu: { left: 25, top: 55, width: 37, height: 13 },
       storage: { left: 35, top: 67, width: 20, height: 4 },
       psu: { left: 22, top: 70, width: 38, height: 10 },
-    },
-  },
-  black: {
-    src: "/builds/black.jpg",
-    alt: "A black Digibuggy build with an RTX graphics card",
-    regions: {
-      case: { left: 13, top: 10, width: 73, height: 86 },
-      motherboard: { left: 30, top: 24, width: 33, height: 34 },
-      cpu: { left: 35.5, top: 33, width: 6, height: 8 },
-      cooler: { left: 34, top: 31, width: 9, height: 12 },
-      ram: { left: 45, top: 31, width: 5, height: 15 },
-      gpu: { left: 19, top: 47, width: 46, height: 11 },
-      storage: { left: 48, top: 58, width: 13, height: 3 },
-      psu: { left: 18, top: 66, width: 31, height: 16 },
     },
   },
 };
@@ -91,7 +77,7 @@ export function BuildStage({ build, issues }: { build: Build; issues: Issue[] })
     if (added) setLatest(added);
   }, [build]);
 
-  const photo = PHOTOS[build.case?.color?.toLowerCase().includes("white") ? "white" : "black"];
+  const photo = PHOTOS.white;
   const complete = CORE.every((c) => build[c]) && !issues.some((i) => i.level === "error");
   const baseFilter = complete
     ? "none"
