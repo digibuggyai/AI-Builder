@@ -33,6 +33,7 @@ import {
 config({ path: "../.env", quiet: true });
 
 const MD = { name: "MD Computers", websiteUrl: "https://mdcomputers.in" };
+const MOCK = { name: "Mock prices", websiteUrl: "https://example.com" };
 
 function loadCsv<T extends z.ZodType>(file: string, schema: T, errors: string[]): z.infer<T>[] {
   const records: Record<string, string>[] = parse(readFileSync(file, "utf8"), {
@@ -150,8 +151,27 @@ async function main() {
       .onConflictDoUpdate({ target: retailers.name, set: MD }).returning({ id: retailers.id });
     if (!md) throw new Error("Could not create the MD Computers retailer");
 
+    const [mock] = await tx.insert(retailers).values(MOCK)
+      .onConflictDoUpdate({ target: retailers.name, set: MOCK }).returning({ id: retailers.id });
+    if (!mock) throw new Error("Could not create the mock price retailer");
+    await tx.delete(listings).where(eq(listings.retailerId, mock.id));
+
+    let mockCount = 0;
     for (const link of links) {
-      if (!link.url) continue;
+      if (!link.url) {
+        if (link.priceRupees == null) continue;
+        await tx.insert(listings).values({
+          partCategory: link.category,
+          partId: link.partId,
+          retailerId: mock.id,
+          url: `mock://${link.category}/${link.partId}`,
+          pricePaise: link.priceRupees * 100,
+          inStock: true,
+          lastCheckedAt: new Date(),
+        });
+        mockCount++;
+        continue;
+      }
       await tx.insert(listings)
         .values({
           partCategory: link.category,
@@ -167,6 +187,7 @@ async function main() {
           set: { partCategory: link.category, partId: link.partId },
         });
     }
+    if (mockCount > 0) console.log(`⚠️  ${mockCount} parts use MOCK prices (no store link yet)`);
   });
 
   for (const [name, rows] of Object.entries(data)) {

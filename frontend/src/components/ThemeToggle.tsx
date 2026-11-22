@@ -9,8 +9,7 @@ export function ThemeToggle() {
     root.dataset.theme = next;
     try {
       localStorage.setItem("theme", next);
-    } catch {
-    }
+    } catch {}
   }
 
   return (
@@ -19,7 +18,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label="Switch between light and dark theme"
       title="Switch theme"
-      className="grid size-9 place-items-center rounded-lg border border-border bg-surface-2 text-muted transition hover:text-foreground"
+      className="grid size-8 place-items-center rounded-md text-muted hover:bg-surface-2 hover:text-foreground"
     >
       <Sun className="size-4 light:hidden" aria-hidden />
       <Moon className="hidden size-4 light:block" aria-hidden />

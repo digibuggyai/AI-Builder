@@ -22,6 +22,7 @@ const base = {
   brand: z.string().min(1),
   name: z.string().min(1),
   url: z.preprocess((v) => (v === "" ? undefined : v), z.string().url().optional()),
+  imageUrl: z.preprocess((v) => (v === "" || v == null ? null : v), z.string().url().nullable()),
   priceRupees: z.preprocess((v) => (v === "" || v == null ? null : v), z.coerce.number().int().positive().nullable()),
 };
 

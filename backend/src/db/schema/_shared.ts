@@ -26,6 +26,7 @@ export const partColumns = () => ({
   slug: text("slug").notNull().unique(),
   brand: text("brand").notNull(),
   name: text("name").notNull(),
+  imageUrl: text("image_url"),
   enabled: boolean("enabled").notNull().default(true),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });

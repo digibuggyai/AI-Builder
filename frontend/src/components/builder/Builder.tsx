@@ -9,10 +9,10 @@ import {
   type Category,
   type PartBase,
 } from "@pcb/shared";
-import { CircleCheck, TriangleAlert } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { CATEGORY_META, formatINR } from "@/lib/parts";
+import { ImportPanel } from "./ImportPanel";
 import { PartPicker } from "./PartPicker";
 import { PartSlot } from "./PartSlot";
 import { Summary } from "./Summary";
@@ -22,9 +22,9 @@ type Selection = Partial<Record<Category, string>>;
 const REQUIRED = CATEGORIES.filter((c) => CATEGORY_META[c].required);
 
 const GROUPS: { title: string; categories: Category[] }[] = [
-  { title: "Core parts", categories: ["cpu", "motherboard", "ram", "gpu"] },
-  { title: "Storage & power", categories: ["storage", "psu"] },
-  { title: "Cooling & case", categories: ["cooler", "case"] },
+  { title: "Core", categories: ["cpu", "motherboard", "ram", "gpu"] },
+  { title: "Storage and power", categories: ["storage", "psu"] },
+  { title: "Cooling and case", categories: ["cooler", "case"] },
   { title: "Extras", categories: ["monitor"] },
 ];
 
@@ -80,54 +80,36 @@ export function Builder({ catalog }: { catalog: Catalog }) {
     });
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pt-8 pb-32 lg:pb-16">
-      <div className="flex flex-wrap items-end justify-between gap-4">
+    <div className="mx-auto max-w-6xl px-4 pt-8 pb-28 lg:pb-16">
+      <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-2 border-b border-border pb-5">
         <div>
-          <p className="text-xs font-semibold tracking-[0.16em] text-accent-text uppercase">◆ Advanced mode</p>
-          <h1 className="font-display mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
-            Build your <span className="text-brand">PC</span>
-          </h1>
-          <p className="mt-2 text-muted">Pick each part. We check that everything fits as you go.</p>
+          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Your build</h1>
+          <p className="mt-1 text-sm text-muted">Add parts in any order. Each one is checked against the rest.</p>
         </div>
-        <div className="w-full sm:w-56">
-          <div className="flex justify-between text-sm">
-            <span className="text-muted">Progress</span>
-            <span className="font-medium tabular-nums">
-              {requiredDone} / {REQUIRED.length}
-            </span>
-          </div>
-          <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-surface-2">
-            <div
-              className="h-full rounded-full bg-accent transition-all duration-700 ease-(--ease)"
-              style={{ width: `${(requiredDone / REQUIRED.length) * 100}%` }}
-            />
-          </div>
-        </div>
+        <p className="font-mono text-sm text-muted">
+          <span className="text-foreground">{requiredDone}</span> of {REQUIRED.length} required parts
+        </p>
       </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_340px]">
-        <div className="space-y-8">
+      <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_360px]">
+        <div className="space-y-6">
+          <ImportPanel onImport={(imported) => setSelection((s) => ({ ...s, ...imported }))} />
           {GROUPS.map((group) => (
-            <section key={group.title} aria-labelledby={`group-${group.title}`}>
-              <h2
-                id={`group-${group.title}`}
-                className="mb-3 text-xs font-semibold tracking-widest text-muted uppercase"
-              >
-                {group.title}
-              </h2>
-              <ol className="space-y-3">
+            <section key={group.title} aria-label={group.title}>
+              <h2 className="mb-2 text-xs font-medium text-muted">{group.title}</h2>
+              <ul className="divide-y divide-border overflow-hidden rounded-lg border border-border bg-surface">
                 {group.categories.map((c) => (
                   <PartSlot
                     key={c}
-                    index={CATEGORIES.indexOf(c)}
                     category={c}
                     part={build[c]}
+                    available={catalog[c].length}
                     issues={issues.filter((i) => i.parts.includes(c) && build[c])}
                     onChoose={() => setPicking(c)}
                     onRemove={() => remove(c)}
                   />
                 ))}
-              </ol>
+              </ul>
             </section>
           ))}
         </div>
@@ -142,23 +124,20 @@ export function Builder({ catalog }: { catalog: Catalog }) {
         />
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 glass-strong border-t border-border px-4 py-3 lg:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface px-4 py-3 lg:hidden">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
           <div>
-            <p className="font-display text-xl font-bold tabular-nums">{formatINR(total)}</p>
-            {chosen > 0 &&
-              (errorCount > 0 ? (
-                <p className="flex items-center gap-1 text-xs text-error">
-                  <TriangleAlert className="size-3.5" aria-hidden /> {errorCount} to fix
-                </p>
-              ) : (
-                <p className="flex items-center gap-1 text-xs text-ok">
-                  <CircleCheck className="size-3.5" aria-hidden /> Everything fits
-                </p>
-              ))}
+            <p className="font-mono text-lg font-medium tabular-nums">{formatINR(total)}</p>
+            <p className={`text-xs ${errorCount > 0 ? "text-error" : "text-muted"}`}>
+              {chosen === 0
+                ? "No parts yet"
+                : errorCount > 0
+                  ? `${errorCount} ${errorCount === 1 ? "problem" : "problems"} to fix`
+                  : "No problems found"}
+            </p>
           </div>
-          <a href="#summary" className="btn-primary rounded-full px-4 py-2 text-sm font-semibold">
-            View summary
+          <a href="#summary" className="rounded-md border border-border-strong px-3 py-1.5 text-sm font-medium">
+            Summary
           </a>
         </div>
       </div>

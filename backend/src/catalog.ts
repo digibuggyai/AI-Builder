@@ -14,7 +14,15 @@ import {
   type Db,
 } from "./db";
 
-type Price = { priceRupees: number | null; inStock: boolean };
+type Price = { priceRupees: number | null; inStock: boolean; buyUrl: string | null };
+
+function isBetter(candidate: Price, current: Price | undefined): boolean {
+  if (!current) return true;
+  if (candidate.priceRupees == null) return false;
+  if (current.priceRupees == null) return true;
+  if (candidate.inStock !== current.inStock) return candidate.inStock;
+  return candidate.priceRupees < current.priceRupees;
+}
 
 async function loadPrices(db: Db): Promise<Map<string, Price>> {
   const rows = await db
@@ -23,20 +31,19 @@ async function loadPrices(db: Db): Promise<Map<string, Price>> {
       partId: listings.partId,
       pricePaise: listings.pricePaise,
       inStock: listings.inStock,
+      url: listings.url,
     })
     .from(listings);
 
   const best = new Map<string, Price>();
   for (const r of rows) {
-    if (r.pricePaise == null) continue;
     const key = `${r.category}:${r.partId}`;
-    const rupees = r.pricePaise / 100;
-    const current = best.get(key);
-    const better =
-      !current ||
-      (r.inStock && !current.inStock) ||
-      (r.inStock === current.inStock && rupees < (current.priceRupees ?? Infinity));
-    if (better) best.set(key, { priceRupees: rupees, inStock: r.inStock });
+    const candidate: Price = {
+      priceRupees: r.pricePaise == null ? null : r.pricePaise / 100,
+      inStock: r.pricePaise != null && r.inStock,
+      buyUrl: r.url.startsWith("http") ? r.url : null,
+    };
+    if (isBetter(candidate, best.get(key))) best.set(key, candidate);
   }
   return best;
 }
@@ -47,7 +54,7 @@ function toPart<T extends { id: number; enabled: boolean; createdAt: Date }>(
   prices: Map<string, Price>,
 ) {
   const { enabled: _enabled, createdAt: _createdAt, ...part } = row;
-  const price = prices.get(`${category}:${row.id}`) ?? { priceRupees: null, inStock: false };
+  const price = prices.get(`${category}:${row.id}`) ?? { priceRupees: null, inStock: false, buyUrl: null };
   return { ...part, ...price };
 }
 

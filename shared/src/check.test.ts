@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { checkBuild, estimateWattage, problemsIfChosen } from "./check";
 import type { Case, Cooler, Cpu, Gpu, Motherboard, PartBase, Psu, Ram } from "./types";
 
-const base: PartBase = { id: 1, slug: "x", brand: "Test", name: "Test part", priceRupees: 1000, inStock: true };
+const base: PartBase = { id: 1, slug: "x", brand: "Test", name: "Test part", priceRupees: 1000, inStock: true, buyUrl: null, imageUrl: null };
 
 const cpu = (o: Partial<Cpu> = {}): Cpu => ({
   ...base, brand: "AMD", name: "Ryzen 5 7600", socket: "AM5", cores: 6, threads: 12,

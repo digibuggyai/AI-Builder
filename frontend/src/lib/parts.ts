@@ -2,17 +2,17 @@ import type { Category, PartByCategory } from "@pcb/shared";
 
 export const CATEGORY_META: Record<
   Category,
-  { label: string; noun: string; hint: string; required: boolean }
+  { label: string; short: string; noun: string; hint: string; required: boolean }
 > = {
-  cpu: { label: "Processor (CPU)", noun: "CPU", hint: "The brain of your PC. Pick this first.", required: true },
-  motherboard: { label: "Motherboard", noun: "motherboard", hint: "Connects every part together.", required: true },
-  ram: { label: "Memory (RAM)", noun: "RAM kit", hint: "Keeps apps and games running smoothly.", required: true },
-  gpu: { label: "Graphics card (GPU)", noun: "graphics card", hint: "Draws your games, video and 3D.", required: true },
-  storage: { label: "Storage", noun: "storage drive", hint: "Where Windows, files and games live.", required: true },
-  psu: { label: "Power supply (PSU)", noun: "power supply", hint: "Powers everything, safely.", required: true },
-  cooler: { label: "CPU cooler", noun: "CPU cooler", hint: "Keeps the CPU cool and quiet.", required: true },
-  case: { label: "Case", noun: "case", hint: "Holds and protects every part.", required: true },
-  monitor: { label: "Monitor", noun: "monitor", hint: "Skip it if you already have one.", required: false },
+  cpu: { label: "Processor", short: "CPU", noun: "processor", hint: "Start here. It decides which motherboards fit.", required: true },
+  motherboard: { label: "Motherboard", short: "Motherboard", noun: "motherboard", hint: "Has to match the CPU socket and the memory type.", required: true },
+  ram: { label: "Memory", short: "RAM", noun: "memory kit", hint: "16 GB is fine for most games. 32 GB if you edit video.", required: true },
+  gpu: { label: "Graphics card", short: "GPU", noun: "graphics card", hint: "Matters most for games. Long cards need a big case.", required: true },
+  storage: { label: "Storage", short: "Storage", noun: "drive", hint: "An NVMe SSD makes Windows and games load quickly.", required: true },
+  psu: { label: "Power supply", short: "PSU", noun: "power supply", hint: "Aim for about 30% more than the build draws.", required: true },
+  cooler: { label: "CPU cooler", short: "Cooler", noun: "cooler", hint: "Rated for at least your CPU's wattage.", required: true },
+  case: { label: "Case", short: "Case", noun: "case", hint: "Check its GPU length and cooler height limits.", required: true },
+  monitor: { label: "Monitor", short: "Monitor", noun: "monitor", hint: "Skip it if you already have one.", required: false },
 };
 
 const inr = new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 });

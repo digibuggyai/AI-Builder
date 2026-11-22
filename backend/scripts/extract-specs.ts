@@ -25,7 +25,7 @@ const CATEGORIES: Record<SheetCategory, { file: string; columns: string[]; rule:
   case: { file: "cases", rule: caseRow, columns: ["motherboardSupport", "psuSupport", "maxGpuLengthMm", "maxCoolerHeightMm", "radiatorSupportMm", "drives25", "drives35", "color"] },
 };
 const BASE_COLUMNS = ["slug", "brand", "name"];
-const END_COLUMNS = ["url", "priceRupees"];
+const END_COLUMNS = ["url", "priceRupees", "imageUrl"];
 
 const FALSE_IF_MISSING = new Set(["hasWifi", "rgb", "has12v2x6"]);
 
@@ -63,6 +63,18 @@ function pageText(html: string): string {
     .trim();
 }
 
+function productImage(html: string, pageUrl: string): string | null {
+  const match =
+    html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ??
+    html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+  if (!match?.[1]) return null;
+  try {
+    return new URL(match[1], pageUrl).toString();
+  } catch {
+    return null;
+  }
+}
+
 function toCsvText(key: string, value: unknown): string {
   if (value == null) return FALSE_IF_MISSING.has(key) ? "false" : "";
   if (Array.isArray(value)) return value.join("|");
@@ -78,7 +90,9 @@ async function extractOne(client: Anthropic, row: SheetRow, takenSlugs: Set<stri
   });
   if (!page.ok) return { ok: false, reason: `product page answered HTTP ${page.status}` };
 
-  let text = pageText(await page.text());
+  const html = await page.text();
+  const imageUrl = productImage(html, row.url);
+  let text = pageText(html);
   if (text.length > MAX_PAGE_CHARS) {
     console.warn(`   ⚠ page text is ${text.length} chars, using the first ${MAX_PAGE_CHARS}: ${row.url}`);
     text = text.slice(0, MAX_PAGE_CHARS);
@@ -115,6 +129,7 @@ async function extractOne(client: Anthropic, row: SheetRow, takenSlugs: Set<stri
   const record: Record<string, string> = { slug, brand: String(data.brand ?? ""), name: String(data.name || row.name) };
   for (const key of cfg.columns) record[key] = toCsvText(key, data[key]);
   record.url = row.url;
+  record.imageUrl = imageUrl ?? "";
   record.priceRupees = toCsvText("priceRupees", row.priceRupees ?? data.priceRupees);
 
   const check = cfg.rule.safeParse(record);
@@ -170,8 +185,8 @@ async function main() {
         const result = await extractOne(client, row, takenSlugs);
         if (result.ok) {
           const path = csvPath(cfg.file);
-          const header = [...BASE_COLUMNS, ...cfg.columns, ...END_COLUMNS];
-          if (!existsSync(path)) writeFileSync(path, csvLine(header));
+          if (!existsSync(path)) writeFileSync(path, csvLine([...BASE_COLUMNS, ...cfg.columns, ...END_COLUMNS]));
+          const header = readFileSync(path, "utf8").split(/\r?\n/)[0]!.split(",");
           appendFileSync(path, csvLine(header.map((h) => result.record[h] ?? "")));
           good++;
           console.log(`✅ ${row.category.padEnd(11)} ${result.record.name}`);

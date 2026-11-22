@@ -1,1 +1,8 @@
 slug,brand,name,wattage,efficiency,modular,formFactor,has12v2x6,url,priceRupees
+deepcool-pk550d,DeepCool,DeepCool PK550D 550W,550,80+ Bronze,Non,ATX,false,,3800
+msi-mag-a650bn,MSI,MSI MAG A650BN 650W,650,80+ Bronze,Non,ATX,false,,4500
+corsair-cx750,Corsair,Corsair CX750 750W,750,80+ Bronze,Non,ATX,false,,6500
+corsair-rm850e,Corsair,Corsair RM850e 850W ATX 3.1,850,80+ Gold,Full,ATX,true,,10500
+msi-mag-a850gl-pcie5,MSI,MSI MAG A850GL PCIE5 850W,850,80+ Gold,Full,ATX,true,,9000
+corsair-rm1000x,Corsair,Corsair RM1000x 1000W,1000,80+ Gold,Full,ATX,true,,16000
+corsair-sf750,Corsair,Corsair SF750 750W SFX,750,80+ Platinum,Full,SFX,true,,14500

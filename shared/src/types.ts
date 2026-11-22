@@ -9,6 +9,8 @@ export type PartBase = {
   name: string;
   priceRupees: number | null;
   inStock: boolean;
+  buyUrl: string | null;
+  imageUrl: string | null;
 };
 
 export type Cpu = PartBase & {

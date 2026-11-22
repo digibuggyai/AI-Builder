@@ -18,6 +18,7 @@ export const cpus = pgTable("cpus", {
   maxMemorySpeedMts: integer("max_memory_speed_mts"),
   hasIntegratedGraphics: boolean("has_integrated_graphics").notNull().default(false),
   pcieVersion: integer("pcie_version").notNull(),
+  imageUrl: text("image_url"),
   enabled: boolean("enabled").notNull().default(true),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });

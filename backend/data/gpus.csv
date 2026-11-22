@@ -1,1 +1,10 @@
 slug,brand,name,chipMaker,chipset,vramGb,lengthMm,slotWidth,tdpW,recommendedPsuW,powerConnectors,pcieVersion,url,priceRupees
+zotac-rtx-3050-6gb-solo,ZOTAC,ZOTAC Gaming GeForce RTX 3050 6GB Solo,NVIDIA,RTX 3050 6GB,6,163,2.0,70,300,,4,,17000
+msi-rtx-4060-ventus-2x-black,MSI,MSI GeForce RTX 4060 Ventus 2X Black 8G OC,NVIDIA,RTX 4060,8,199,2.0,115,550,1x 8-pin,4,,28000
+zotac-rtx-5060-ti-16gb-twin-edge,ZOTAC,ZOTAC Gaming GeForce RTX 5060 Ti 16GB Twin Edge,NVIDIA,RTX 5060 Ti,16,221,2.0,180,650,1x 8-pin,5,,46000
+asus-prime-rtx-5070-oc,ASUS,ASUS Prime GeForce RTX 5070 12GB OC,NVIDIA,RTX 5070,12,304,2.5,250,650,1x 12V-2x6,5,,58000
+gigabyte-rtx-5070-ti-windforce-oc-sff,Gigabyte,Gigabyte GeForce RTX 5070 Ti Windforce OC SFF 16G,NVIDIA,RTX 5070 Ti,16,304,2.5,300,750,1x 12V-2x6,5,,85000
+msi-rtx-5080-gaming-trio-oc,MSI,MSI GeForce RTX 5080 16G Gaming Trio OC,NVIDIA,RTX 5080,16,338,3.0,360,850,1x 12V-2x6,5,,115000
+sapphire-pulse-rx-7600,Sapphire,Sapphire Pulse Radeon RX 7600 8GB,AMD,RX 7600,8,240,2.0,165,550,1x 8-pin,4,,26000
+sapphire-pulse-rx-9070-xt,Sapphire,Sapphire Pulse Radeon RX 9070 XT 16GB,AMD,RX 9070 XT,16,320,3.0,304,750,2x 8-pin,5,,70000
+intel-arc-b580-limited-edition,Intel,Intel Arc B580 Limited Edition 12GB,Intel,Arc B580,12,272,2.0,190,600,1x 8-pin,4,,27000
