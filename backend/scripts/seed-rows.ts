@@ -22,7 +22,7 @@ const base = {
   brand: z.string().min(1),
   name: z.string().min(1),
   url: z.preprocess((v) => (v === "" ? undefined : v), z.string().url().optional()),
-  imageUrl: z.preprocess((v) => (v === "" || v == null ? null : v), z.string().url().nullable()),
+  imageUrl: z.preprocess((v) => (v === "" || v == null ? null : v), z.string().regex(/^(https?:\/\/|\/)/, "must be a link or a /parts/ path").nullable()),
   priceRupees: z.preprocess((v) => (v === "" || v == null ? null : v), z.coerce.number().int().positive().nullable()),
 };
 

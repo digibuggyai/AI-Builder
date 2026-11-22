@@ -1,6 +1,6 @@
 "use client";
 
-import { CATEGORIES, type Build, type Category, type Issue, type PartByCategory, type Ram } from "@pcb/shared";
+import { CATEGORIES, estimateWattage, type Build, type Category, type Issue, type PartByCategory, type Ram } from "@pcb/shared";
 import { useEffect, useRef, useState } from "react";
 import { diagramStates } from "@/components/PcDiagram";
 import { CATEGORY_META, formatINR } from "@/lib/parts";
@@ -57,6 +57,76 @@ function CaseFan({ top }: { top: number }) {
       </g>
       <circle cx="30" cy="30" r="6" fill="#262c37" />
     </svg>
+  );
+}
+
+type Tone = "ok" | "warn" | "bad";
+
+const TONE: Record<Tone, string> = {
+  ok: "border-[#3f8f63] bg-[#0f2219]/90 text-[#8fe0b0]",
+  warn: "border-[#a8812f] bg-[#261d0b]/90 text-[#f2c66d]",
+  bad: "border-[#b04a43] bg-[#2a1210]/90 text-[#ff9a90]",
+};
+
+function Tag({ tone, style, children }: { tone: Tone; style: React.CSSProperties; children: React.ReactNode }) {
+  return (
+    <span
+      style={style}
+      className={`step-in absolute z-10 rounded-md border px-1.5 py-0.5 font-mono text-[10px] leading-tight whitespace-nowrap backdrop-blur-sm ${TONE[tone]}`}
+    >
+      {children}
+    </span>
+  );
+}
+
+function Callouts({ build }: { build: Build }) {
+  const { cpu, motherboard: board, ram, gpu, cooler, psu, case: pcCase } = build;
+  const wattage = estimateWattage(build);
+
+  const gpuSpare = gpu && pcCase ? pcCase.maxGpuLengthMm - gpu.lengthMm : null;
+  const gpuTone: Tone = gpuSpare == null ? "ok" : gpuSpare < 0 ? "bad" : gpuSpare < 15 ? "warn" : "ok";
+  const coolerFits = cooler?.type === "Air" && cooler.heightMm != null && pcCase ? cooler.heightMm <= pcCase.maxCoolerHeightMm : null;
+  const psuLoad = psu && wattage > 0 ? wattage / psu.wattage : null;
+  const psuTone: Tone = psuLoad == null ? "ok" : psuLoad >= 1 ? "bad" : psuLoad > 0.77 ? "warn" : "ok";
+
+  return (
+    <>
+      {cpu && board && (
+        <Tag tone={cpu.socket === board.socket ? "ok" : "bad"} style={{ left: "8%", top: "36%" }}>
+          {cpu.socket === board.socket ? `${cpu.socket} ✓` : `${cpu.socket} ≠ ${board.socket}`}
+        </Tag>
+      )}
+      {ram && board && (
+        <Tag tone={ram.memoryType === board.memoryType ? "ok" : "bad"} style={{ left: "46.5%", top: "39%" }}>
+          {ram.memoryType === board.memoryType ? `${ram.memoryType} ✓` : `${ram.memoryType} ≠ ${board.memoryType}`}
+        </Tag>
+      )}
+      {gpu && (
+        <>
+          <span aria-hidden className="absolute z-10 h-px" style={{ left: "4%", width: "82%", top: "57%", background: "currentColor" }}>
+            <span className={`absolute inset-0 ${gpuTone === "bad" ? "bg-[#ff9a90]" : gpuTone === "warn" ? "bg-[#f2c66d]" : "bg-[#8fe0b0]"}`} />
+          </span>
+          <Tag tone={gpuTone} style={{ left: "4%", top: "58.5%" }}>
+            GPU {gpu.lengthMm} mm{pcCase ? ` · case fits ${pcCase.maxGpuLengthMm} mm` : ""}
+          </Tag>
+        </>
+      )}
+      {cooler && cooler.type === "Air" && cooler.heightMm != null && (
+        <Tag tone={coolerFits === false ? "bad" : "ok"} style={{ left: "44%", top: "26%" }}>
+          ↕ {cooler.heightMm} mm{pcCase ? ` / max ${pcCase.maxCoolerHeightMm}` : ""}
+        </Tag>
+      )}
+      {cooler && cpu && (
+        <Tag tone={cooler.tdpRatingW >= cpu.tdpW ? "ok" : "bad"} style={{ left: "17.5%", top: "6%" }}>
+          {cooler.tdpRatingW} W cooling · CPU {cpu.tdpW} W
+        </Tag>
+      )}
+      {psu && wattage > 0 && (
+        <Tag tone={psuTone} style={{ left: "54%", top: "84%" }}>
+          ⚡ {wattage} W of {psu.wattage} W
+        </Tag>
+      )}
+    </>
   );
 }
 
@@ -120,6 +190,8 @@ export function BuildStage({ build, issues }: { build: Build; issues: Issue[] })
             {build.case.name}
           </p>
         )}
+
+        <Callouts build={build} />
       </div>
 
       {latestPart && latest && (

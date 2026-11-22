@@ -1,10 +1,10 @@
-slug,brand,name,socket,chipset,formFactor,memoryType,ramSlots,maxRamGb,maxRamSpeedMts,m2Slots,sataPorts,pcieVersion,hasWifi,url,priceRupees
-gigabyte-a520m-k-v2,Gigabyte,Gigabyte A520M K V2,AM4,A520,Micro-ATX,DDR4,2,64,5100,1,4,3,false,,5700
-msi-pro-b550m-vdh-wifi,MSI,MSI PRO B550M-VDH WiFi,AM4,B550,Micro-ATX,DDR4,4,128,4400,2,4,4,true,,11000
-msi-b650m-gaming-plus-wifi,MSI,MSI B650M Gaming Plus WiFi,AM5,B650,Micro-ATX,DDR5,4,192,7200,2,4,4,true,,17000
-asus-tuf-gaming-b850-plus-wifi,ASUS,ASUS TUF Gaming B850-Plus WiFi,AM5,B850,ATX,DDR5,4,192,8000,3,4,5,true,,23000
-gigabyte-b650i-aorus-ultra,Gigabyte,Gigabyte B650I Aorus Ultra,AM5,B650,Mini-ITX,DDR5,2,96,8000,3,2,4,true,,28000
-asus-prime-h610m-e-d4,ASUS,ASUS Prime H610M-E D4,LGA1700,H610,Micro-ATX,DDR4,2,64,3200,2,4,4,false,,6500
-msi-pro-b760m-a-wifi,MSI,MSI PRO B760M-A WiFi DDR5,LGA1700,B760,Micro-ATX,DDR5,4,192,7000,2,4,4,true,,14000
-gigabyte-z790-aorus-elite-ax,Gigabyte,Gigabyte Z790 Aorus Elite AX,LGA1700,Z790,ATX,DDR5,4,192,7600,4,6,5,true,,24000
-msi-pro-b860m-a-wifi,MSI,MSI PRO B860M-A WiFi,LGA1851,B860,Micro-ATX,DDR5,4,256,8000,2,4,5,true,,15500
+slug,brand,name,socket,chipset,formFactor,memoryType,ramSlots,maxRamGb,maxRamSpeedMts,m2Slots,sataPorts,pcieVersion,hasWifi,url,priceRupees,imageUrl
+gigabyte-a520m-k-v2,Gigabyte,Gigabyte A520M K V2,AM4,A520,Micro-ATX,DDR4,2,64,5100,1,4,3,false,,5700,
+msi-pro-b550m-vdh-wifi,MSI,MSI PRO B550M-VDH WiFi,AM4,B550,Micro-ATX,DDR4,4,128,4400,2,4,4,true,,11000,
+msi-b650m-gaming-plus-wifi,MSI,MSI B650M Gaming Plus WiFi,AM5,B650,Micro-ATX,DDR5,4,192,7200,2,4,4,true,,17000,
+asus-tuf-gaming-b850-plus-wifi,ASUS,ASUS TUF Gaming B850-Plus WiFi,AM5,B850,ATX,DDR5,4,192,8000,3,4,5,true,,23000,
+gigabyte-b650i-aorus-ultra,Gigabyte,Gigabyte B650I Aorus Ultra,AM5,B650,Mini-ITX,DDR5,2,96,8000,3,2,4,true,,28000,
+asus-prime-h610m-e-d4,ASUS,ASUS Prime H610M-E D4,LGA1700,H610,Micro-ATX,DDR4,2,64,3200,2,4,4,false,,6500,
+msi-pro-b760m-a-wifi,MSI,MSI PRO B760M-A WiFi DDR5,LGA1700,B760,Micro-ATX,DDR5,4,192,7000,2,4,4,true,,14000,
+gigabyte-z790-aorus-elite-ax,Gigabyte,Gigabyte Z790 Aorus Elite AX,LGA1700,Z790,ATX,DDR5,4,192,7600,4,6,5,true,,24000,
+msi-pro-b860m-a-wifi,MSI,MSI PRO B860M-A WiFi,LGA1851,B860,Micro-ATX,DDR5,4,256,8000,2,4,5,true,,15500,
