@@ -1,133 +1,83 @@
 "use client";
 
-import { CATEGORIES, estimateWattage, type Build, type Category, type Issue, type PartByCategory, type Ram } from "@pcb/shared";
+import { CATEGORIES, estimateWattage, type Build, type Category, type Issue } from "@pcb/shared";
 import { useEffect, useRef, useState } from "react";
 import { diagramStates } from "@/components/PcDiagram";
 import { CATEGORY_META, formatINR } from "@/lib/parts";
 import { PartArt } from "./PartArt";
 
-type StageCategory = "motherboard" | "cpu" | "cooler" | "ram" | "gpu" | "storage" | "psu";
+type Region = { left: number; top: number; width: number; height: number };
+type Photo = { src: string; alt: string; regions: Record<Exclude<Category, "monitor">, Region> };
 
-const SLOTS: Record<StageCategory, { left: number; top: number; width: number; height: number; z: number }> = {
-  motherboard: { left: 6, top: 6, width: 64, height: 64, z: 1 },
-  storage: { left: 17, top: 58.5, width: 27, height: 4.5, z: 2 },
-  psu: { left: 6, top: 77, width: 46, height: 17, z: 2 },
-  cpu: { left: 23, top: 17, width: 15, height: 12, z: 2 },
-  ram: { left: 46.5, top: 9, width: 15, height: 29, z: 3 },
-  cooler: { left: 17.5, top: 11, width: 26, height: 23, z: 4 },
-  gpu: { left: 4, top: 43, width: 82, height: 12.5, z: 5 },
+const PHOTOS: Record<"white" | "black", Photo> = {
+  white: {
+    src: "/builds/white.jpg",
+    alt: "A white Digibuggy build with lit fans",
+    regions: {
+      case: { left: 19, top: 19, width: 66, height: 76 },
+      motherboard: { left: 33, top: 26, width: 29, height: 30 },
+      cpu: { left: 40, top: 40, width: 8, height: 10 },
+      cooler: { left: 38, top: 37, width: 12, height: 15 },
+      ram: { left: 46, top: 36, width: 6, height: 17 },
+      gpu: { left: 25, top: 55, width: 37, height: 13 },
+      storage: { left: 35, top: 67, width: 20, height: 4 },
+      psu: { left: 22, top: 70, width: 38, height: 10 },
+    },
+  },
+  black: {
+    src: "/builds/black.jpg",
+    alt: "A black Digibuggy build with an RTX graphics card",
+    regions: {
+      case: { left: 13, top: 10, width: 73, height: 86 },
+      motherboard: { left: 30, top: 24, width: 33, height: 34 },
+      cpu: { left: 35.5, top: 33, width: 6, height: 8 },
+      cooler: { left: 34, top: 31, width: 9, height: 12 },
+      ram: { left: 45, top: 31, width: 5, height: 15 },
+      gpu: { left: 19, top: 47, width: 46, height: 11 },
+      storage: { left: 48, top: 58, width: 13, height: 3 },
+      psu: { left: 18, top: 66, width: 31, height: 16 },
+    },
+  },
 };
 
-const ORDER: StageCategory[] = ["motherboard", "storage", "psu", "cpu", "ram", "cooler", "gpu"];
+const ORDER = ["motherboard", "psu", "storage", "cpu", "ram", "cooler", "gpu"] as const;
+const CORE = ["cpu", "motherboard", "ram", "gpu", "storage", "psu", "cooler", "case"] as const;
 
-function Visual({ category, part }: { category: StageCategory; part: PartByCategory[Category] }) {
-  if (part.imageUrl) {
-    return (
-      <img
-        src={part.imageUrl}
-        alt={part.name}
-        referrerPolicy="no-referrer"
-        className="h-full w-full rounded-md bg-white object-contain p-1 shadow-lg"
-      />
-    );
-  }
-  if (category === "ram") {
-    const sticks = Math.min(Math.max((part as Ram).modules, 1), 4);
-    return (
-      <div className="flex h-full gap-[6%]">
-        {Array.from({ length: sticks }, (_, i) => (
-          <div key={i} className="h-full flex-1">
-            <PartArt category="ram" part={part} />
-          </div>
-        ))}
-      </div>
-    );
-  }
-  return <PartArt category={category} part={part} />;
-}
-
-function CaseFan({ top }: { top: number }) {
-  return (
-    <svg viewBox="0 0 60 60" className="absolute right-[5%] w-[15%]" style={{ top: `${top}%` }} aria-hidden>
-      <circle cx="30" cy="30" r="28" fill="#0c0e12" stroke="#2a313d" strokeWidth="2" />
-      <g className="fan-spin">
-        {[0, 72, 144, 216, 288].map((a) => (
-          <path key={a} d="M30 30 q 14 -5 18 -20 q -11 2 -18 20 z" fill="#2c3340" transform={`rotate(${a} 30 30)`} />
-        ))}
-      </g>
-      <circle cx="30" cy="30" r="6" fill="#262c37" />
-    </svg>
-  );
-}
+const clip = (r: Region) =>
+  `inset(${r.top}% ${100 - r.left - r.width}% ${100 - r.top - r.height}% ${r.left}% round 10px)`;
 
 type Tone = "ok" | "warn" | "bad";
-
 const TONE: Record<Tone, string> = {
-  ok: "border-[#3f8f63] bg-[#0f2219]/90 text-[#8fe0b0]",
-  warn: "border-[#a8812f] bg-[#261d0b]/90 text-[#f2c66d]",
-  bad: "border-[#b04a43] bg-[#2a1210]/90 text-[#ff9a90]",
+  ok: "border-ok/40 bg-ok-tint text-ok",
+  warn: "border-warn/40 bg-warn-tint text-warn",
+  bad: "border-error/40 bg-error-tint text-error",
 };
 
-function Tag({ tone, style, children }: { tone: Tone; style: React.CSSProperties; children: React.ReactNode }) {
-  return (
-    <span
-      style={style}
-      className={`step-in absolute z-10 rounded-md border px-1.5 py-0.5 font-mono text-[10px] leading-tight whitespace-nowrap backdrop-blur-sm ${TONE[tone]}`}
-    >
-      {children}
-    </span>
-  );
-}
-
-function Callouts({ build }: { build: Build }) {
+function specChecks(build: Build): { tone: Tone; text: string }[] {
   const { cpu, motherboard: board, ram, gpu, cooler, psu, case: pcCase } = build;
+  const checks: { tone: Tone; text: string }[] = [];
+  if (cpu && board) {
+    checks.push(cpu.socket === board.socket ? { tone: "ok", text: `${cpu.socket} ✓` } : { tone: "bad", text: `${cpu.socket} ≠ ${board.socket}` });
+  }
+  if (ram && board) {
+    checks.push(ram.memoryType === board.memoryType ? { tone: "ok", text: `${ram.memoryType} ✓` } : { tone: "bad", text: `${ram.memoryType} ≠ ${board.memoryType}` });
+  }
+  if (gpu && pcCase) {
+    const spare = pcCase.maxGpuLengthMm - gpu.lengthMm;
+    checks.push({ tone: spare < 0 ? "bad" : spare < 15 ? "warn" : "ok", text: `GPU ${gpu.lengthMm} mm · fits ${pcCase.maxGpuLengthMm}` });
+  }
+  if (cooler?.type === "Air" && cooler.heightMm != null && pcCase) {
+    checks.push({ tone: cooler.heightMm <= pcCase.maxCoolerHeightMm ? "ok" : "bad", text: `Cooler ${cooler.heightMm} mm · max ${pcCase.maxCoolerHeightMm}` });
+  }
+  if (cooler && cpu) {
+    checks.push({ tone: cooler.tdpRatingW >= cpu.tdpW ? "ok" : "bad", text: `${cooler.tdpRatingW} W cooling · CPU ${cpu.tdpW} W` });
+  }
   const wattage = estimateWattage(build);
-
-  const gpuSpare = gpu && pcCase ? pcCase.maxGpuLengthMm - gpu.lengthMm : null;
-  const gpuTone: Tone = gpuSpare == null ? "ok" : gpuSpare < 0 ? "bad" : gpuSpare < 15 ? "warn" : "ok";
-  const coolerFits = cooler?.type === "Air" && cooler.heightMm != null && pcCase ? cooler.heightMm <= pcCase.maxCoolerHeightMm : null;
-  const psuLoad = psu && wattage > 0 ? wattage / psu.wattage : null;
-  const psuTone: Tone = psuLoad == null ? "ok" : psuLoad >= 1 ? "bad" : psuLoad > 0.77 ? "warn" : "ok";
-
-  return (
-    <>
-      {cpu && board && (
-        <Tag tone={cpu.socket === board.socket ? "ok" : "bad"} style={{ left: "8%", top: "36%" }}>
-          {cpu.socket === board.socket ? `${cpu.socket} ✓` : `${cpu.socket} ≠ ${board.socket}`}
-        </Tag>
-      )}
-      {ram && board && (
-        <Tag tone={ram.memoryType === board.memoryType ? "ok" : "bad"} style={{ left: "46.5%", top: "39%" }}>
-          {ram.memoryType === board.memoryType ? `${ram.memoryType} ✓` : `${ram.memoryType} ≠ ${board.memoryType}`}
-        </Tag>
-      )}
-      {gpu && (
-        <>
-          <span aria-hidden className="absolute z-10 h-px" style={{ left: "4%", width: "82%", top: "57%", background: "currentColor" }}>
-            <span className={`absolute inset-0 ${gpuTone === "bad" ? "bg-[#ff9a90]" : gpuTone === "warn" ? "bg-[#f2c66d]" : "bg-[#8fe0b0]"}`} />
-          </span>
-          <Tag tone={gpuTone} style={{ left: "4%", top: "58.5%" }}>
-            GPU {gpu.lengthMm} mm{pcCase ? ` · case fits ${pcCase.maxGpuLengthMm} mm` : ""}
-          </Tag>
-        </>
-      )}
-      {cooler && cooler.type === "Air" && cooler.heightMm != null && (
-        <Tag tone={coolerFits === false ? "bad" : "ok"} style={{ left: "44%", top: "26%" }}>
-          ↕ {cooler.heightMm} mm{pcCase ? ` / max ${pcCase.maxCoolerHeightMm}` : ""}
-        </Tag>
-      )}
-      {cooler && cpu && (
-        <Tag tone={cooler.tdpRatingW >= cpu.tdpW ? "ok" : "bad"} style={{ left: "17.5%", top: "6%" }}>
-          {cooler.tdpRatingW} W cooling · CPU {cpu.tdpW} W
-        </Tag>
-      )}
-      {psu && wattage > 0 && (
-        <Tag tone={psuTone} style={{ left: "54%", top: "84%" }}>
-          ⚡ {wattage} W of {psu.wattage} W
-        </Tag>
-      )}
-    </>
-  );
+  if (psu && wattage > 0) {
+    const load = wattage / psu.wattage;
+    checks.push({ tone: load >= 1 ? "bad" : load > 0.77 ? "warn" : "ok", text: `${wattage} W of ${psu.wattage} W` });
+  }
+  return checks;
 }
 
 export function BuildStage({ build, issues }: { build: Build; issues: Issue[] }) {
@@ -141,65 +91,83 @@ export function BuildStage({ build, issues }: { build: Build; issues: Issue[] })
     if (added) setLatest(added);
   }, [build]);
 
+  const photo = PHOTOS[build.case?.color?.toLowerCase().includes("white") ? "white" : "black"];
+  const complete = CORE.every((c) => build[c]) && !issues.some((i) => i.level === "error");
+  const baseFilter = complete
+    ? "none"
+    : build.case
+      ? "grayscale(0.7) brightness(0.42)"
+      : "grayscale(1) brightness(0.22)";
+  const checks = specChecks(build);
   const latestPart = latest ? build[latest] : undefined;
-  const caseState = states.case;
 
   return (
     <div>
       <div
-        className={`relative aspect-[4/5] overflow-hidden rounded-2xl border-2 bg-[linear-gradient(160deg,#171b23,#0b0d11)] transition-colors ${
-          caseState === "error" ? "border-error" : build.case ? "border-accent/70" : "border-border"
+        className={`relative aspect-square overflow-hidden rounded-2xl border bg-black ${
+          states.case === "error" ? "border-error" : complete ? "border-accent/60" : "border-border"
         }`}
-        role="img"
-        aria-label="Your PC being assembled"
       >
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.07),transparent_35%)]" />
-        <div className="absolute top-[74%] right-[4%] left-[4%] h-px bg-[#2a313d]" />
-        {build.case && [8, 28, 48].map((top) => <CaseFan key={top} top={top} />)}
+        <img
+          src={photo.src}
+          alt={photo.alt}
+          className="absolute inset-0 h-full w-full object-cover transition-[filter] duration-700 ease-out"
+          style={{ filter: baseFilter }}
+        />
 
-        {ORDER.map((category) => {
-          const slot = SLOTS[category];
-          const part = build[category];
-          const style = { left: `${slot.left}%`, top: `${slot.top}%`, width: `${slot.width}%`, height: `${slot.height}%`, zIndex: slot.z };
-          if (!part) {
+        {!complete &&
+          ORDER.map((category) => {
+            const part = build[category];
+            if (!part) return null;
+            const region = photo.regions[category];
+            const state = states[category];
             return (
-              <div
-                key={`${category}-empty`}
-                style={style}
-                className="absolute grid place-items-center rounded-md border border-dashed border-[#343c4a] text-[10px] font-medium tracking-wide text-[#5d6779] uppercase"
-              >
-                {category === "cooler" ? "" : CATEGORY_META[category].short}
+              <div key={`${category}-${part.slug}`}>
+                <img
+                  src={photo.src}
+                  alt=""
+                  aria-hidden
+                  className="region-in absolute inset-0 h-full w-full object-cover"
+                  style={{ clipPath: clip(region) }}
+                />
+                <span
+                  aria-hidden
+                  className={`absolute rounded-[10px] ${state === "error" ? "region-error" : "region-ring"}`}
+                  style={{ left: `${region.left}%`, top: `${region.top}%`, width: `${region.width}%`, height: `${region.height}%` }}
+                />
               </div>
             );
-          }
-          const state = states[category];
-          return (
-            <div
-              key={`${category}-${part.slug}`}
-              style={style}
-              className={`stage-drop absolute ${state === "error" ? "stage-error" : "stage-land"}`}
-              title={part.name}
-            >
-              <Visual category={category} part={part} />
-            </div>
-          );
-        })}
+          })}
 
-        {build.case && (
-          <p className="absolute top-3 left-3 max-w-[70%] truncate rounded-md bg-black/60 px-2 py-1 text-[11px] text-white/80">
-            {build.case.name}
-          </p>
-        )}
-
-        <Callouts build={build} />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent" />
+        <div className="absolute inset-x-3 bottom-3 flex items-end justify-between gap-3">
+          <p className="truncate text-xs text-white/80">{build.case ? build.case.name : "Pick a case to set the look"}</p>
+          {complete ? (
+            <span className="step-in shrink-0 rounded-md bg-accent px-2 py-1 font-mono text-[11px] font-semibold text-accent-ink">Build complete</span>
+          ) : (
+            <span className="shrink-0 font-mono text-[11px] text-white/60">
+              {CORE.filter((c) => build[c]).length}/{CORE.length} parts
+            </span>
+          )}
+        </div>
       </div>
+
+      {checks.length > 0 && (
+        <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Fit checks">
+          {checks.map((c) => (
+            <li key={c.text} className={`step-in rounded-md border px-2 py-0.5 font-mono text-[11px] ${TONE[c.tone]}`}>
+              {c.text}
+            </li>
+          ))}
+        </ul>
+      )}
 
       {latestPart && latest && (
         <div key={`${latest}-${latestPart.slug}`} className="step-in mt-3 flex items-center gap-3 rounded-xl border border-border bg-surface p-3">
           <div className="grid size-12 shrink-0 place-items-center overflow-hidden rounded-lg bg-[#12151b] p-1.5">
             {latestPart.imageUrl ? (
               <img src={latestPart.imageUrl} alt="" referrerPolicy="no-referrer" className="h-full w-full object-contain" />
-            ) : latest in SLOTS ? (
+            ) : latest !== "case" && latest !== "monitor" ? (
               <PartArt category={latest} part={latestPart} />
             ) : (
               <span className="text-[10px] text-white/70">{CATEGORY_META[latest].short}</span>
