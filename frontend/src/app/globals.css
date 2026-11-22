@@ -52,8 +52,8 @@
   --error-tint: #2f1517;
   --diagram-line: #3a4150;
   --diagram-fill: #151821;
-  --wm-edge: #16181e;
-  --wm-center: #4a4f5a;
+  --wm-edge: #2a2e37;
+  --wm-center: #505664;
   --wm-glow: #ffffff;
   --wm-shadow: rgb(147 168 255 / 0.55);
 }
@@ -188,14 +188,14 @@
   font-family: var(--font-bricolage);
   font-weight: 800;
   font-size: clamp(4rem, 15vw, 14rem);
-  line-height: 0.82;
+  line-height: 1.05;
+  padding-bottom: 0.08em;
   letter-spacing: -0.05em;
   text-align: center;
   white-space: nowrap;
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  translate: 0 16%;
 }
 
 .wordmark-base {
