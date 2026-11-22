@@ -58,10 +58,7 @@ export default function HomePage() {
         />
         <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pt-8 pb-14 lg:grid-cols-[1.2fr_0.8fr] lg:pt-12">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-xs text-muted">
-              <span className="size-1.5 rounded-full bg-accent" /> Digibuggy PC Builder
-            </p>
-            <h1 className="mt-5 font-display text-[clamp(30px,3.6vw,48px)] leading-[1.08] font-semibold tracking-[-0.03em]">
+            <h1 className="font-display text-[clamp(30px,3.6vw,48px)] leading-[1.08] font-semibold tracking-[-0.03em]">
               Build a PC that <em>works the first time.</em>
             </h1>
             <p className="mt-4 max-w-md text-base text-muted">
@@ -104,7 +101,7 @@ export default function HomePage() {
                   <span className="grid size-10 place-items-center rounded-xl bg-accent-tint text-accent-text">
                     <Icon className="size-5" aria-hidden />
                   </span>
-                  <span className="font-mono text-xs text-dim uppercase">{mode.tag}</span>
+                  <span className="tabular-nums text-xs text-dim uppercase">{mode.tag}</span>
                 </div>
                 <h3 className="mt-8 font-display text-3xl leading-none font-semibold tracking-[-0.03em]">
                   {mode.title} <em>{mode.accent}</em>
@@ -129,7 +126,7 @@ export default function HomePage() {
             {checks.map((c, i) => (
               <div key={c.title}>
                 <dt className="flex items-center gap-3 font-semibold">
-                  <span className="grid size-7 place-items-center rounded-lg bg-accent-tint font-mono text-xs text-accent-text">
+                  <span className="grid size-7 place-items-center rounded-lg bg-accent-tint tabular-nums text-xs text-accent-text">
                     {i + 1}
                   </span>
                   {c.title}

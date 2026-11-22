@@ -68,7 +68,7 @@ export function SiteFooter() {
           <nav aria-label="Footer" className="grid grid-cols-2 gap-8 sm:grid-cols-3">
             {COLUMNS.map((column) => (
               <div key={column.title}>
-                <h2 className="font-mono text-xs font-medium tracking-[0.14em] text-muted uppercase">{column.title}</h2>
+                <h2 className="tabular-nums text-xs font-medium tracking-[0.14em] text-muted uppercase">{column.title}</h2>
                 <ul className="mt-5 space-y-3.5">
                   {column.links.map((link) => (
                     <li key={link.label}>

@@ -148,7 +148,7 @@ export function ImportPanel({ onImport }: { onImport: (selection: Selection) => 
                 placeholder={PLACEHOLDER}
                 rows={8}
                 aria-label="Parts list"
-                className="w-full resize-y btn-secondary rounded-xl bg-background p-3 font-mono text-sm outline-none placeholder:text-muted focus:border-accent"
+                className="w-full resize-y btn-secondary rounded-xl bg-background p-3 tabular-nums text-sm outline-none placeholder:text-muted focus:border-accent"
               />
             ) : preview ? (
               <div className="relative inline-block">
@@ -223,7 +223,7 @@ export function ImportPanel({ onImport }: { onImport: (selection: Selection) => 
                 {state.result.unmatched.length > 0 && (
                   <>
                     <p className="mt-2 text-muted">Not in our catalogue yet, pick these yourself:</p>
-                    <ul className="mt-1 list-inside list-disc font-mono text-xs">
+                    <ul className="mt-1 list-inside list-disc tabular-nums text-xs">
                       {state.result.unmatched.map((line) => (
                         <li key={line}>{line}</li>
                       ))}
@@ -233,7 +233,7 @@ export function ImportPanel({ onImport }: { onImport: (selection: Selection) => 
                 {state.result.extras.length > 0 && (
                   <>
                     <p className="mt-2 text-muted">Also in your list (the builder holds one of each part type):</p>
-                    <ul className="mt-1 list-inside list-disc font-mono text-xs">
+                    <ul className="mt-1 list-inside list-disc tabular-nums text-xs">
                       {state.result.extras.map((line) => (
                         <li key={line}>{line}</li>
                       ))}

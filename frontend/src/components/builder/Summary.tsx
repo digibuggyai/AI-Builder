@@ -44,14 +44,14 @@ export function Summary({ build, issues, total, wattage, chosen, onReset }: Prop
               {CATEGORIES.filter((c) => build[c]).map((c) => (
                 <li key={c} className="flex items-baseline justify-between gap-3">
                   <span className="text-muted">{CATEGORY_META[c].short}</span>
-                  <span className="font-mono tabular-nums">{formatINR(build[c]!.priceRupees)}</span>
+                  <span className="tabular-nums ">{formatINR(build[c]!.priceRupees)}</span>
                 </li>
               ))}
             </ul>
           )}
           <div className="mt-3 flex items-baseline justify-between border-t border-border pt-3">
             <span className="text-sm font-medium">Total</span>
-            <span className="font-mono text-xl font-medium tabular-nums">{formatINR(total)}</span>
+            <span className="tabular-nums text-xl font-medium ">{formatINR(total)}</span>
           </div>
         </div>
 
@@ -65,13 +65,13 @@ export function Summary({ build, issues, total, wattage, chosen, onReset }: Prop
             <ul className="mt-2 space-y-2 text-sm">
               {errors.map((i) => (
                 <li key={i.code} className="flex gap-2">
-                  <span className="font-mono text-error">✗</span>
+                  <span className="tabular-nums text-error">✗</span>
                   <span>{i.message}</span>
                 </li>
               ))}
               {warnings.map((i) => (
                 <li key={i.code} className="flex gap-2 text-muted">
-                  <span className="font-mono text-warn">!</span>
+                  <span className="tabular-nums text-warn">!</span>
                   <span>{i.message}</span>
                 </li>
               ))}
@@ -82,7 +82,7 @@ export function Summary({ build, issues, total, wattage, chosen, onReset }: Prop
         <section className="border-t border-border px-4 py-3">
           <div className="flex items-baseline justify-between text-sm">
             <h3 className="font-semibold">Power</h3>
-            <span className="font-mono text-muted tabular-nums">
+            <span className="tabular-nums text-muted ">
               {wattage} W{psu ? ` / ${psu.wattage} W` : ""}
             </span>
           </div>

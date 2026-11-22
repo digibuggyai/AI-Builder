@@ -72,7 +72,7 @@ export function ProWizard({ catalog }: { catalog: Catalog }) {
           <span className="font-medium text-accent-text">Pro</span>
           <span className="text-muted"> · Guided build</span>
         </p>
-        <p className="font-mono text-xs text-muted">
+        <p className="tabular-nums text-xs text-muted">
           Step {index + 1} of {STEPS.length}
         </p>
       </div>
@@ -95,7 +95,7 @@ export function ProWizard({ catalog }: { catalog: Catalog }) {
                     }`}
                   >
                     <span
-                      className={`grid size-5 shrink-0 place-items-center rounded-full font-mono text-[10px] ${
+                      className={`grid size-5 shrink-0 place-items-center rounded-full tabular-nums text-[10px] ${
                         done ? "bg-accent text-accent-ink" : current ? "border border-accent text-accent-text" : "border border-border"
                       }`}
                     >
@@ -205,7 +205,7 @@ function PartStepView({
     <>
       <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Choose a <em>{meta.noun}.</em></h1>
       <p className="mt-2 text-muted">{meta.hint}</p>
-      <p className="mt-3 font-mono text-sm text-muted">
+      <p className="mt-3 tabular-nums text-sm text-muted">
         Suggested spend: <span className="text-foreground">about {formatINR(Math.round(target / 500) * 500)}</span>
       </p>
 
@@ -279,11 +279,11 @@ function Options({
           <div className="mt-2 flex flex-wrap items-start justify-between gap-4">
             <div className="min-w-0">
               <p className="text-lg leading-snug font-semibold">{pick.name}</p>
-              <p className="mt-1 font-mono text-xs text-muted">{specChips(step, pick).join("  ·  ")}</p>
+              <p className="mt-1 tabular-nums text-xs text-muted">{specChips(step, pick).join("  ·  ")}</p>
               {data.reason && <p className="mt-3 text-sm">{data.reason}</p>}
             </div>
             <div className="text-right">
-              <p className="font-mono text-xl font-medium tabular-nums">{formatINR(pick.priceRupees)}</p>
+              <p className="tabular-nums text-xl font-medium ">{formatINR(pick.priceRupees)}</p>
               <button
                 type="button"
                 onClick={() => onChoose(pick.slug)}
@@ -370,10 +370,10 @@ function OptionGroup({
               >
                 <span className="min-w-0">
                   <span className="block leading-snug font-medium">{part.name}</span>
-                  <span className="mt-1 block font-mono text-xs text-muted">{specChips(step, part).join("  ·  ")}</span>
+                  <span className="mt-1 block tabular-nums text-xs text-muted">{specChips(step, part).join("  ·  ")}</span>
                 </span>
                 <span className="text-right">
-                  <span className="block font-mono text-sm font-medium tabular-nums">{formatINR(part.priceRupees)}</span>
+                  <span className="block tabular-nums text-sm font-medium ">{formatINR(part.priceRupees)}</span>
                   {isSelected && <span className="text-xs text-accent-text">Selected</span>}
                 </span>
               </button>
@@ -407,7 +407,7 @@ function ReviewStep({
   return (
     <>
       <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-        Your build: <span className="font-mono">{formatINR(spent)}</span>
+        Your build: <span className="tabular-nums">{formatINR(spent)}</span>
       </h1>
       <p className={`mt-2 ${diff >= 0 ? "text-ok" : "text-error"}`}>
         {diff >= 0 ? `${formatINR(diff)} under budget` : `${formatINR(-diff)} over budget`}
@@ -464,12 +464,12 @@ function BudgetPanel({
       <div className="border-b border-border p-4">
         <div className="flex items-baseline justify-between">
           <span className="text-sm font-semibold">Budget</span>
-          <span className="font-mono text-sm text-muted">{formatINR(budget)}</span>
+          <span className="tabular-nums text-sm text-muted">{formatINR(budget)}</span>
         </div>
         <div className="mt-3 h-2 overflow-hidden rounded-full bg-surface-2">
           <div className={`h-full transition-all ${over ? "bg-error" : "bg-accent"}`} style={{ width: `${ratio * 100}%` }} />
         </div>
-        <div className="mt-2 flex justify-between font-mono text-xs">
+        <div className="mt-2 flex justify-between tabular-nums text-xs">
           <span>{formatINR(spent)} spent</span>
           <span className={over ? "text-error" : "text-muted"}>
             {over ? `${formatINR(spent - budget)} over` : `${formatINR(budget - spent)} left`}
@@ -484,7 +484,7 @@ function BudgetPanel({
             <li key={c}>
               <button type="button" onClick={() => onJump(c)} className="flex w-full items-baseline justify-between gap-3 px-4 py-2 text-left hover:bg-surface-2">
                 <span className={part ? "" : "text-muted"}>{CATEGORY_META[c].short}</span>
-                <span className="font-mono text-xs tabular-nums">
+                <span className="tabular-nums text-xs ">
                   {part ? formatINR(part.priceRupees) : <span className="text-muted">~{formatINR(Math.round((split[c] * budget) / 500) * 500)}</span>}
                 </span>
               </button>

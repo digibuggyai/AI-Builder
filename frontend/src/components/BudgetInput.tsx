@@ -20,7 +20,7 @@ export function BudgetInput({ value, onChange }: { value: number; onChange: (rup
         onChange={(e) => onChange(Number(e.target.value))}
         className="mt-6 w-full accent-accent"
       />
-      <div className="mt-1 flex justify-between font-mono text-xs text-muted">
+      <div className="mt-1 flex justify-between tabular-nums text-xs text-muted">
         <span>{formatINR(BUDGET_MIN)}</span>
         <span>{formatINR(BUDGET_MAX)}</span>
       </div>
@@ -30,7 +30,7 @@ export function BudgetInput({ value, onChange }: { value: number; onChange: (rup
             key={preset}
             type="button"
             onClick={() => onChange(preset)}
-            className={`rounded-full border px-3 py-1 font-mono text-sm transition-colors ${
+            className={`rounded-full border px-3 py-1 tabular-nums text-sm transition-colors ${
               value === preset ? "border-accent bg-accent-tint text-accent-text" : "border-border hover:border-border-strong"
             }`}
           >

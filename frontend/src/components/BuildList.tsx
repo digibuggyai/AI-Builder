@@ -21,12 +21,12 @@ export function BuildList({ build, issues = [], notes = {} }: Props) {
             <p className="text-sm text-muted">{CATEGORY_META[category].label}</p>
             <div className="min-w-0">
               <p className="leading-snug font-medium">{part.name}</p>
-              <p className="mt-1 font-mono text-xs text-muted">{specChips(category, part).join("  ·  ")}</p>
+              <p className="mt-1 tabular-nums text-xs text-muted">{specChips(category, part).join("  ·  ")}</p>
               {notes[category] && <p className="mt-1.5 text-sm text-accent-text">{notes[category]}</p>}
               {problem && <p className="mt-1.5 text-sm text-error">{problem.message}</p>}
             </div>
             <div className="text-left sm:text-right">
-              <p className="font-mono text-sm font-medium tabular-nums">{formatINR(part.priceRupees)}</p>
+              <p className="tabular-nums text-sm font-medium ">{formatINR(part.priceRupees)}</p>
               {part.buyUrl && (
                 <a
                   href={part.buyUrl}

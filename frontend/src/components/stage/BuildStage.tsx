@@ -129,9 +129,9 @@ export function BuildStage({ build, issues }: { build: Build; issues: Issue[] })
         <div className="absolute inset-x-3 bottom-3 flex items-end justify-between gap-3">
           <p className="truncate text-xs text-white/80">{build.case ? build.case.name : "Pick a case to set the look"}</p>
           {complete ? (
-            <span className="step-in shrink-0 rounded-md bg-accent px-2 py-1 font-mono text-[11px] font-semibold text-accent-ink">Build complete</span>
+            <span className="step-in shrink-0 rounded-md bg-accent px-2 py-1 tabular-nums text-[11px] font-semibold text-accent-ink">Build complete</span>
           ) : (
-            <span className="shrink-0 font-mono text-[11px] text-white/60">
+            <span className="shrink-0 tabular-nums text-[11px] text-white/60">
               {CORE.filter((c) => build[c]).length}/{CORE.length} parts
             </span>
           )}
@@ -141,7 +141,7 @@ export function BuildStage({ build, issues }: { build: Build; issues: Issue[] })
       {checks.length > 0 && (
         <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Fit checks">
           {checks.map((c) => (
-            <li key={c.text} className={`step-in rounded-md border px-2 py-0.5 font-mono text-[11px] ${TONE[c.tone]}`}>
+            <li key={c.text} className={`step-in rounded-md border px-2 py-0.5 tabular-nums text-[11px] ${TONE[c.tone]}`}>
               {c.text}
             </li>
           ))}
@@ -163,7 +163,7 @@ export function BuildStage({ build, issues }: { build: Build; issues: Issue[] })
             <p className="text-xs text-muted">Added {CATEGORY_META[latest].label.toLowerCase()}</p>
             <p className="truncate text-sm font-medium">{latestPart.name}</p>
           </div>
-          <p className={`shrink-0 font-mono text-xs ${states[latest] === "error" ? "text-error" : "text-ok"}`}>
+          <p className={`shrink-0 tabular-nums text-xs ${states[latest] === "error" ? "text-error" : "text-ok"}`}>
             {states[latest] === "error" ? "✗ check" : formatINR(latestPart.priceRupees)}
           </p>
         </div>

@@ -46,7 +46,7 @@ export function HomeDiagram() {
         <PcDiagram states={current.states} label="A PC being assembled part by part" />
       </div>
       <figcaption className="mt-4 flex min-h-10 items-start gap-3 border-t border-border pt-3 text-xs sm:text-sm" aria-live="polite">
-        <span className="font-mono text-xs text-muted tabular-nums">Example ·{" "}
+        <span className="tabular-nums text-xs text-muted ">Example ·{" "}
           {String(frame + 1).padStart(2, "0")}/{String(frames.length).padStart(2, "0")}
         </span>
         <span className={toneClass[current.tone]}>{current.caption}</span>

@@ -103,7 +103,7 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
           <span className="font-medium text-accent-text">Beginner</span>
           <span className="text-muted"> · Build it for me</span>
         </p>
-        <ol className="flex items-center gap-2 font-mono text-xs text-muted" aria-label="Progress">
+        <ol className="flex items-center gap-2 tabular-nums text-xs text-muted" aria-label="Progress">
           {["Use", "Budget", "Your PC"].map((name, i) => (
             <li key={name} className="flex items-center gap-2">
               <span
@@ -256,11 +256,11 @@ function BeginnerResult({
     <>
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
-          <p className="font-mono text-sm text-muted">
+          <p className="tabular-nums text-sm text-muted">
             {USE_CASES[useCase].label} · budget {formatINR(budget)}
           </p>
           <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-            Your PC comes to <span className="font-mono">{formatINR(total)}</span>
+            Your PC comes to <span className="tabular-nums">{formatINR(total)}</span>
           </h1>
           <p className="mt-2 text-ok">{formatINR(budget - total)} under budget</p>
         </div>
@@ -283,8 +283,8 @@ function BeginnerResult({
               {errors.length > 0 ? `${errors.length} part${errors.length === 1 ? "" : "s"} need attention` : "✓ Every part fits together"}
             </p>
             <p className="mt-2 text-muted">
-              Power: about <span className="font-mono text-foreground">{wattage} W</span> of{" "}
-              <span className="font-mono text-foreground">{build.psu?.wattage ?? "?"} W</span>
+              Power: about <span className="tabular-nums text-foreground">{wattage} W</span> of{" "}
+              <span className="tabular-nums text-foreground">{build.psu?.wattage ?? "?"} W</span>
             </p>
           </div>
           <div className="flex gap-4 px-1 text-sm">

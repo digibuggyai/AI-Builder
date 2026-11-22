@@ -86,7 +86,7 @@ export function Builder({ catalog }: { catalog: Catalog }) {
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Your <em>build.</em></h1>
           <p className="mt-1 text-sm text-muted">Add parts in any order. Each one is checked against the rest.</p>
         </div>
-        <p className="font-mono text-sm text-muted">
+        <p className="tabular-nums text-sm text-muted">
           <span className="text-foreground">{requiredDone}</span> of {REQUIRED.length} required parts
         </p>
       </div>
@@ -127,7 +127,7 @@ export function Builder({ catalog }: { catalog: Catalog }) {
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface px-4 py-3 lg:hidden">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
           <div>
-            <p className="font-mono text-lg font-medium tabular-nums">{formatINR(total)}</p>
+            <p className="tabular-nums text-lg font-medium ">{formatINR(total)}</p>
             <p className={`text-xs ${errorCount > 0 ? "text-error" : "text-muted"}`}>
               {chosen === 0
                 ? "No parts yet"

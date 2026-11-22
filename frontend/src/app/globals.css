@@ -86,8 +86,8 @@
   --color-warn-tint: var(--warn-tint);
   --color-error: var(--error);
   --color-error-tint: var(--error-tint);
-  --font-sans: var(--font-manrope);
-  --font-mono: var(--font-jetbrains);
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-jakarta);
   --font-display: var(--font-sora);
 }
 
@@ -151,7 +151,7 @@
 .pc .outline[data-state] { fill: transparent; }
 .pc .line[data-state] { fill: none; stroke-dasharray: none; }
 .pc .cooler[data-state] { fill-opacity: 0.6; }
-.pc text { font-family: var(--font-jetbrains); font-size: 9px; letter-spacing: 0.04em; fill: var(--muted); stroke: none; }
+.pc text { font-family: var(--font-jakarta); font-size: 9px; letter-spacing: 0.04em; fill: var(--muted); stroke: none; }
 .pc text[data-state] { stroke: none; stroke-dasharray: none; }
 .pc text[data-state="empty"] { fill: var(--muted); }
 .pc text[data-state="ok"] { fill: var(--accent-text); }

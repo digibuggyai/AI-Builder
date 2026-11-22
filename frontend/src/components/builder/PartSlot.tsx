@@ -31,7 +31,7 @@ export function PartSlot({ category, part, available, issues, onChoose, onRemove
       {part ? (
         <div className="min-w-0">
           <p className="leading-snug font-medium">{part.name}</p>
-          <p className="mt-1 font-mono text-xs text-muted">{specChips(category, part).join("  ·  ")}</p>
+          <p className="mt-1 tabular-nums text-xs text-muted">{specChips(category, part).join("  ·  ")}</p>
         </div>
       ) : (
         <p className="text-sm text-muted">{available === 0 ? "No parts listed yet." : meta.hint}</p>
@@ -41,7 +41,7 @@ export function PartSlot({ category, part, available, issues, onChoose, onRemove
         {part ? (
           <>
             <div className="text-right">
-              <p className="font-mono text-sm font-medium tabular-nums">{formatINR(part.priceRupees)}</p>
+              <p className="tabular-nums text-sm font-medium ">{formatINR(part.priceRupees)}</p>
               {part.buyUrl && (
                 <a
                   href={part.buyUrl}

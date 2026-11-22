@@ -214,7 +214,7 @@ function Option({
       >
         <span className="min-w-0">
           <span className={`block leading-snug font-medium ${problems.length > 0 ? "text-muted" : ""}`}>{part.name}</span>
-          <span className="mt-1 block font-mono text-xs text-muted">{specChips(category, part).join("  ·  ")}</span>
+          <span className="mt-1 block tabular-nums text-xs text-muted">{specChips(category, part).join("  ·  ")}</span>
           {problems.map((p) => (
             <span key={p.code} className="mt-1 block text-xs text-error">
               {p.message}
@@ -222,7 +222,7 @@ function Option({
           ))}
         </span>
         <span className="text-right">
-          <span className="block font-mono text-sm font-medium tabular-nums">{formatINR(part.priceRupees)}</span>
+          <span className="block tabular-nums text-sm font-medium ">{formatINR(part.priceRupees)}</span>
           {selected ? (
             <span className="text-xs text-accent-text">Selected</span>
           ) : (
