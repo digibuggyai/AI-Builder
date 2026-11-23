@@ -12,6 +12,12 @@ const SETS = [
     { color: "var(--blob-1)", left: "30%", bottom: "-36%", size: 200, move: "group-hover:translate-x-5" },
     { color: "var(--blob-3)", left: "70%", bottom: "-34%", size: 140, move: "group-hover:-translate-x-6" },
   ],
+  [
+    { color: "var(--blob-1)", left: "6%", bottom: "-90%", size: 170, move: "group-hover:translate-x-6" },
+    { color: "var(--blob-3)", left: "34%", bottom: "-110%", size: 150, move: "group-hover:-translate-x-5" },
+    { color: "var(--blob-2)", left: "60%", bottom: "-100%", size: 140, move: "group-hover:translate-x-5" },
+    { color: "var(--blob-1)", left: "84%", bottom: "-95%", size: 160, move: "group-hover:-translate-x-6" },
+  ],
 ];
 
 export function GlassBlobs({ variant = 0, className = "h-1/2" }: { variant?: number; className?: string }) {
