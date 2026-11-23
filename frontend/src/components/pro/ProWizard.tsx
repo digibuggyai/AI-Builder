@@ -17,6 +17,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { BudgetInput } from "@/components/BudgetInput";
 import { BuildList } from "@/components/BuildList";
+import { ModeSwitch } from "@/components/ModeSwitch";
 import { BuildStage } from "@/components/stage/BuildStage";
 import { UseCasePicker } from "@/components/UseCasePicker";
 import { requestSuggestions } from "@/lib/api";
@@ -68,10 +69,7 @@ export function ProWizard({ catalog }: { catalog: Catalog }) {
   return (
     <div className="mx-auto max-w-7xl px-4 pt-8 pb-20">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
-        <p className="text-sm">
-          <span className="font-medium text-accent-text">Pro</span>
-          <span className="text-muted"> · Guided build</span>
-        </p>
+        <ModeSwitch />
         <p className="tabular-nums text-xs text-muted">
           Step {index + 1} of {STEPS.length}
         </p>

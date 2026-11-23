@@ -12,6 +12,7 @@ import {
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { CATEGORY_META, formatINR } from "@/lib/parts";
+import { ModeSwitch } from "@/components/ModeSwitch";
 import { ImportPanel } from "./ImportPanel";
 import { PartPicker } from "./PartPicker";
 import { PartSlot } from "./PartSlot";
@@ -81,6 +82,9 @@ export function Builder({ catalog }: { catalog: Catalog }) {
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-8 pb-28 lg:pb-16">
+      <div className="mb-6">
+        <ModeSwitch />
+      </div>
       <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-2 border-b border-border pb-5">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Your <em>build.</em></h1>
