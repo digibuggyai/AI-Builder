@@ -1,5 +1,6 @@
 import { ArrowRight, Compass, SlidersHorizontal, Sparkles, type LucideIcon } from "lucide-react";
 import Link from "next/link";
+import { GlassBlobs } from "@/components/GlassBlobs";
 import { HomeDiagram } from "@/components/HomeDiagram";
 
 const modes: {
@@ -80,14 +81,15 @@ export default function HomePage() {
           <p className="max-w-sm text-muted">Same parts, same checks. Pick how much you want to decide.</p>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {modes.map((mode) => {
+          {modes.map((mode, i) => {
             const Icon = mode.icon;
             return (
               <Link
                 key={mode.href}
                 href={mode.href}
-                className="group relative flex flex-col overflow-hidden rounded-2xl glass glow border p-6 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-accent/60"
+                className="group relative isolate flex flex-col overflow-hidden rounded-2xl glass glow border p-6 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-accent/60"
               >
+                <GlassBlobs variant={i} />
                 <span
                   aria-hidden
                   className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
@@ -135,7 +137,8 @@ export default function HomePage() {
 
 
       <section className="px-4 pb-24">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl glass glow border px-6 py-14 text-center sm:py-16">
+        <div className="group relative isolate mx-auto max-w-6xl overflow-hidden rounded-3xl glass glow border px-6 py-14 text-center sm:py-16">
+          <GlassBlobs variant={1} className="h-full" />
             <div className="relative">
             <h2 className="mx-auto max-w-2xl font-display text-3xl leading-tight font-semibold tracking-[-0.03em] sm:text-5xl">
               Your next PC is <em>a few clicks away</em>

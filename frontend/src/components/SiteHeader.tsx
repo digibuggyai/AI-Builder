@@ -35,7 +35,7 @@ export function SiteHeader() {
           hidden ? "-translate-y-[150%]" : "translate-y-0"
         }`}
       >
-        <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 glass glow rounded-full border pr-2 pl-5 shadow-lg shadow-black/10">
+        <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 glass glow rounded-full border pr-2 pl-5">
           <Link href="/" aria-label="Digibuggy PC Builder home" className="flex items-center gap-3">
             <img src="/brand/digibuggy-logo-white.png" alt="Digibuggy" width={1920} height={214} className="h-4 w-auto light:hidden" />
             <img src="/brand/digibuggy-logo-dark.png" alt="Digibuggy" width={1920} height={214} className="hidden h-4 w-auto light:block" />

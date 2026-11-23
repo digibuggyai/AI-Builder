@@ -5,8 +5,8 @@ import { useEffect, useRef } from "react";
 const R = 24;
 const W = Math.sqrt(3) * R;
 const H = 1.5 * R;
-const REACH = 150;
-const DECAY = 0.93;
+const REACH = 95;
+const DECAY = 0.9;
 
 type Cell = { x: number; y: number; e: number };
 
@@ -88,14 +88,14 @@ export function HexField() {
           continue;
         }
         active = true;
-        const r = (R - 1) * (0.55 + 0.45 * c.e);
+        const r = (R - 1) * (0.85 + 0.15 * c.e);
         hexPath(ctx!, c.x, c.y, r);
-        ctx!.globalAlpha = c.e * 0.22;
+        ctx!.globalAlpha = c.e * 0.06;
         ctx!.fillStyle = c.e > 0.6 ? colors.accent2 : colors.accent;
         ctx!.fill();
-        ctx!.globalAlpha = c.e * 0.9;
+        ctx!.globalAlpha = c.e * 0.4;
         ctx!.strokeStyle = c.e > 0.6 ? colors.accent2 : colors.accent;
-        ctx!.lineWidth = 1.2;
+        ctx!.lineWidth = 1;
         ctx!.stroke();
         c.e *= DECAY;
       }
