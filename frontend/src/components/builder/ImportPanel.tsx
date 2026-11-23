@@ -97,7 +97,7 @@ export function ImportPanel({ onImport }: { onImport: (selection: Selection) => 
   const canSubmit = state.status !== "busy" && (tab === "text" ? text.trim().length >= 3 : file != null);
 
   return (
-    <section className="rounded-xl border border-border bg-surface">
+    <section className="rounded-xl glass glow border">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

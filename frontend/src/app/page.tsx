@@ -51,11 +51,6 @@ export default function HomePage() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <div aria-hidden className="hex-grid pointer-events-none absolute inset-0 opacity-30" />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-32 -left-24 size-[520px] rounded-full bg-accent/10 blur-[120px]"
-        />
         <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pt-8 pb-14 lg:grid-cols-[1.2fr_0.8fr] lg:pt-12">
           <div>
             <h1 className="font-display text-[clamp(30px,3.6vw,48px)] leading-[1.08] font-semibold tracking-[-0.03em]">
@@ -91,7 +86,7 @@ export default function HomePage() {
               <Link
                 key={mode.href}
                 href={mode.href}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface p-6 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-accent/60"
+                className="group relative flex flex-col overflow-hidden rounded-2xl glass glow border p-6 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-accent/60"
               >
                 <span
                   aria-hidden
@@ -117,7 +112,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="how" className="scroll-mt-14 border-y border-border bg-surface">
+      <section id="how" className="glass scroll-mt-14 border-y">
         <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 lg:grid-cols-[0.85fr_1.15fr]">
           <h2 className="font-display text-3xl leading-tight font-semibold tracking-[-0.03em] sm:text-5xl">
             What gets <em>checked</em>
@@ -140,9 +135,8 @@ export default function HomePage() {
 
 
       <section className="px-4 pb-24">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border bg-surface px-6 py-14 text-center sm:py-16">
-          <div aria-hidden className="hex-grid pointer-events-none absolute inset-0 opacity-30" />
-          <div className="relative">
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl glass glow border px-6 py-14 text-center sm:py-16">
+            <div className="relative">
             <h2 className="mx-auto max-w-2xl font-display text-3xl leading-tight font-semibold tracking-[-0.03em] sm:text-5xl">
               Your next PC is <em>a few clicks away</em>
             </h2>

@@ -12,7 +12,7 @@ export function BuildList({ build, issues = [], notes = {} }: Props) {
   const categories = CATEGORIES.filter((c) => build[c]);
 
   return (
-    <ul className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
+    <ul className="divide-y divide-border overflow-hidden rounded-xl glass glow border">
       {categories.map((category) => {
         const part = build[category]!;
         const problem = issues.find((i) => i.level === "error" && i.parts.includes(category));

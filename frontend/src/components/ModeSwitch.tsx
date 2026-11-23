@@ -13,7 +13,7 @@ export function ModeSwitch() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Build mode" className="inline-flex rounded-xl border border-border bg-surface-2 p-1">
+    <nav aria-label="Build mode" className="inline-flex glass glow rounded-xl border p-1">
       {MODES.map((mode) => {
         const active = pathname.startsWith(mode.href);
         return (

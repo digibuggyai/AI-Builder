@@ -101,7 +101,7 @@ export function Builder({ catalog }: { catalog: Catalog }) {
           {GROUPS.map((group) => (
             <section key={group.title} aria-label={group.title}>
               <h2 className="mb-2 text-xs font-medium text-muted">{group.title}</h2>
-              <ul className="divide-y divide-border overflow-hidden rounded-lg border border-border bg-surface">
+              <ul className="divide-y divide-border overflow-hidden rounded-lg glass glow border">
                 {group.categories.map((c) => (
                   <PartSlot
                     key={c}
