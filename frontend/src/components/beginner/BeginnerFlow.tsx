@@ -119,7 +119,7 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
       </div>
 
       {step === "use" && (
-        <section key="use" className="step-in mx-auto mt-10 max-w-4xl">
+        <section key="use" className="step-in mx-auto mt-10 max-w-6xl">
           <h1 className="font-display text-4xl font-semibold tracking-tight">What will you mostly <em>use it for?</em></h1>
           <p className="mt-2 text-muted">Pick the closest one. It decides which parts matter most.</p>
           <div className="mt-8">
@@ -141,7 +141,7 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
           <p className="mt-2 text-muted">
             For a {USE_CASES[useCase].label.toLowerCase()} PC. Just the PC: monitor, keyboard and mouse aren&apos;t included.
           </p>
-          <div className="mt-10 rounded-2xl glass glow border p-6 sm:p-8">
+          <div className="mt-10 rounded-2xl glass glow border blobs card-hover p-6 sm:p-8">
             <BudgetInput value={budget} onChange={setBudget} />
           </div>
           <div className="mt-8 flex items-center justify-between">
@@ -176,7 +176,7 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
               <div className="h-80 animate-pulse rounded-2xl glass glow border" />
             </div>
           ) : result.status === "error" ? (
-            <div className="mx-auto max-w-lg rounded-2xl glass glow border p-8 text-center">
+            <div className="mx-auto max-w-lg rounded-2xl glass glow border blobs card-hover p-8 text-center">
               <h1 className="font-display text-2xl font-semibold">We couldn&apos;t reach the parts server</h1>
               <p className="mt-2 text-muted">{result.message}</p>
               <button type="button" onClick={() => run(useCase, budget)} className="btn-primary mt-6 rounded-xl px-4 py-2 font-medium">
@@ -184,7 +184,7 @@ export function BeginnerFlow({ catalog }: { catalog: Catalog }) {
               </button>
             </div>
           ) : result.status === "none" ? (
-            <div className="mx-auto max-w-lg rounded-2xl glass glow border p-8">
+            <div className="mx-auto max-w-lg rounded-2xl glass glow border blobs card-hover p-8">
               <h1 className="font-display text-2xl font-semibold">{formatINR(budget)} isn&apos;t quite enough</h1>
               <p className="mt-2 text-muted">{result.reason}</p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -276,7 +276,7 @@ function BeginnerResult({
         <BuildList build={build} issues={issues} notes={notesFor(build, useCase)} />
         <aside className="space-y-4 lg:sticky lg:top-20 lg:self-start">
           <BuildStage build={build} issues={issues} />
-          <div className="rounded-2xl glass glow border p-4 text-sm">
+          <div className="rounded-2xl glass glow border blobs card-hover p-4 text-sm">
             <p className={errors.length > 0 ? "text-error" : "text-ok"}>
               {errors.length > 0 ? `${errors.length} part${errors.length === 1 ? "" : "s"} need attention` : "✓ Every part fits together"}
             </p>

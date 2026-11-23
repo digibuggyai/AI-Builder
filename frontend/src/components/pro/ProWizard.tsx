@@ -159,7 +159,7 @@ function SetupStep({
         <UseCasePicker value={useCase} onChange={onUseCase} compact />
       </div>
       <h2 className="mt-10 font-display text-2xl font-semibold tracking-tight">Budget for the PC</h2>
-      <div className="mt-4 rounded-2xl glass glow border p-6">
+      <div className="mt-4 rounded-2xl glass glow border blobs card-hover p-6">
         <BudgetInput value={budget} onChange={onBudget} />
       </div>
       <div className="mt-8 flex justify-end">
@@ -215,7 +215,7 @@ function PartStepView({
           </div>
         )}
         {loaded.status === "error" && (
-          <div className="rounded-2xl glass glow border p-6 text-sm">
+          <div className="rounded-2xl glass glow border blobs card-hover p-6 text-sm">
             <p className="font-medium">Couldn&apos;t load suggestions.</p>
             <p className="mt-1 text-muted">{loaded.message}</p>
           </div>
@@ -264,7 +264,7 @@ function Options({
   const blocked = rest.filter((o) => !o.fits);
 
   if (data.options.length === 0) {
-    return <p className="rounded-2xl glass glow border p-6 text-sm text-muted">No parts listed in this category yet.</p>;
+    return <p className="rounded-2xl glass glow border blobs card-hover p-6 text-sm text-muted">No parts listed in this category yet.</p>;
   }
 
   return (
@@ -310,7 +310,7 @@ function Options({
         />
       )}
       {blocked.length > 0 && (
-        <details className="group rounded-2xl glass glow border">
+        <details className="group rounded-2xl glass glow border blobs card-hover">
           <summary className="cursor-pointer list-none px-4 py-3 text-sm text-muted">
             {blocked.length} part{blocked.length === 1 ? "" : "s"} won&apos;t fit with what you&apos;ve picked{" "}
             <span className="text-accent-text group-open:hidden">Show</span>
@@ -351,7 +351,7 @@ function OptionGroup({
   return (
     <div>
       <h2 className="mb-2 text-sm font-medium text-muted">{title}</h2>
-      <ul className="divide-y divide-border overflow-hidden rounded-2xl glass glow border">
+      <ul className="divide-y divide-border overflow-hidden rounded-2xl glass glow border blobs card-hover">
         {items.map((o) => {
           const part = bySlug.get(o.slug);
           if (!part) return null;
@@ -458,7 +458,7 @@ function BudgetPanel({
   const over = spent > budget;
 
   return (
-    <div className="rounded-2xl glass glow border">
+    <div className="rounded-2xl glass glow border blobs card-hover">
       <div className="border-b border-border p-4">
         <div className="flex items-baseline justify-between">
           <span className="text-sm font-semibold">Budget</span>

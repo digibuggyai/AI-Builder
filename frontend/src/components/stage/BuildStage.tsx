@@ -149,7 +149,7 @@ export function BuildStage({ build, issues }: { build: Build; issues: Issue[] })
       )}
 
       {latestPart && latest && (
-        <div key={`${latest}-${latestPart.slug}`} className="step-in mt-3 flex items-center gap-3 rounded-xl glass glow border p-3">
+        <div key={`${latest}-${latestPart.slug}`} className="step-in mt-3 flex items-center gap-3 rounded-xl glass glow border blobs card-hover p-3">
           <div className="grid size-12 shrink-0 place-items-center overflow-hidden rounded-lg bg-[#12151b] p-1.5">
             {latestPart.imageUrl ? (
               <img src={latestPart.imageUrl} alt="" referrerPolicy="no-referrer" className="h-full w-full object-contain" />

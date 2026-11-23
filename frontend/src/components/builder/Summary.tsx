@@ -33,7 +33,7 @@ export function Summary({ build, issues, total, wattage, chosen, onReset }: Prop
   return (
     <aside id="summary" className="space-y-4 lg:sticky lg:top-20 lg:self-start">
       <BuildStage build={build} issues={issues} />
-      <div className="rounded-lg glass glow border">
+      <div className="rounded-lg glass glow border blobs card-hover">
         <h2 className="border-b border-border px-4 py-3 text-sm font-semibold">Summary</h2>
 
         <div className="px-4 py-3">

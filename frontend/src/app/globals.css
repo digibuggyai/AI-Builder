@@ -163,6 +163,35 @@
   .glow:hover {
     --glow-shadow: 0 16px 44px -26px color-mix(in srgb, var(--accent) 45%, transparent);
   }
+  .blobs {
+    isolation: isolate;
+    overflow: hidden;
+  }
+  .blobs::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -28% -10%;
+    height: 75%;
+    max-height: 260px;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(closest-side, var(--blob-1), transparent) 8% 100% / 40% 85% no-repeat,
+      radial-gradient(closest-side, var(--blob-3), transparent) 55% 100% / 36% 75% no-repeat,
+      radial-gradient(closest-side, var(--blob-2), transparent) 92% 100% / 30% 65% no-repeat;
+    filter: blur(26px);
+    transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .blobs:hover::after {
+    transform: translate(3%, -5%);
+  }
+  .card-hover {
+    transition: border-color 200ms ease-out, translate 200ms ease-out;
+  }
+  .card-hover:hover {
+    border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+    translate: 0 -2px;
+  }
 }
 
 .blob {

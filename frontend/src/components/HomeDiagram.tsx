@@ -41,7 +41,7 @@ export function HomeDiagram() {
   const current = frames[frame]!;
 
   return (
-    <figure className="dot-grid mx-auto w-full max-w-[400px] rounded-2xl glass glow border p-5">
+    <figure className="dot-grid mx-auto w-full max-w-[400px] rounded-2xl glass glow border blobs card-hover p-5">
       <div className="mx-auto max-w-[250px]">
         <PcDiagram states={current.states} label="A PC being assembled part by part" />
       </div>
