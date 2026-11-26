@@ -1,14 +1,8 @@
 import { ArrowRight, ArrowUpRight, Check, ChevronDown, Gamepad2, MessageCircle } from "lucide-react";
 import Link from "next/link";
+import { LivePc } from "@/components/LivePc";
 
 const WHATSAPP = "https://api.whatsapp.com/send?phone=919311447394";
-
-const exampleChecks = [
-  { label: "CPU socket", value: "AM5 = AM5" },
-  { label: "Memory", value: "DDR5 on DDR5 board" },
-  { label: "GPU length", value: "336 of 400 mm" },
-  { label: "Power", value: "620 W of 850 W" },
-];
 
 const checks = [
   { title: "Socket and memory", text: "CPU, motherboard and RAM have to agree: AM4, AM5 or LGA1700, DDR4 or DDR5." },
@@ -67,57 +61,21 @@ function Eyebrow({ children, light }: { children: React.ReactNode; light?: boole
   );
 }
 
-function ExampleCheck() {
-  return (
-    <div className="w-full max-w-[340px] justify-self-end rounded-[24px] bg-white/10 p-2 ring-1 ring-white/15 backdrop-blur-md">
-      <div className="rounded-[18px] bg-white p-4 text-[#15140f] shadow-xl">
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-semibold">Build check</span>
-          <span className="rounded-full bg-[#f2f1ec] px-2 py-0.5 text-[11px] text-[#66635b]">Example</span>
-        </div>
-        <p className="mt-5 font-display text-xl leading-tight font-semibold">All 8 parts fit.</p>
-        <p className="mt-1 text-xs text-[#66635b]">Checked again every time a part changes.</p>
-        <ul className="mt-4 space-y-1.5">
-          {exampleChecks.map((c) => (
-            <li key={c.label} className="flex items-center justify-between gap-3 rounded-xl bg-[#f6f5f1] px-3 py-2 text-xs">
-              <span className="flex items-center gap-2 font-medium">
-                <span className="grid size-4 place-items-center rounded-full bg-[#1f7a46] text-white">
-                  <Check className="size-2.5" strokeWidth={3.5} aria-hidden />
-                </span>
-                {c.label}
-              </span>
-              <span className="tabular-nums text-[#66635b]">{c.value}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <p className="flex items-center justify-between px-3 pt-2.5 pb-1 text-xs text-white/60">
-        Next step <span className="font-medium text-white">Pick a case</span>
-      </p>
-    </div>
-  );
-}
-
 export default function HomePage() {
   return (
     <>
       <section className="px-3 pt-3">
         <div className="relative isolate overflow-hidden rounded-[28px] bg-[#0a0a0c] text-white">
-          <img
-            src="/builds/white.jpg"
-            alt=""
-            aria-hidden
-            className="absolute inset-y-0 right-0 -z-10 h-full w-full object-cover object-[65%_45%] opacity-70 lg:w-[70%] lg:opacity-100"
-          />
+          <LivePc className="absolute top-1/2 right-[-18%] -z-10 h-[105%] -translate-y-1/2 opacity-60 sm:right-[-8%] lg:right-[-3%] lg:h-[118%] lg:opacity-100" />
           <div
             aria-hidden
-            className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#0a0a0c_25%,rgb(10_10_12/0.8)_50%,rgb(10_10_12/0.15)_80%)]"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#0a0a0c_22%,rgb(10_10_12/0.85)_38%,rgb(10_10_12/0)_58%)]"
           />
           <div
             aria-hidden
             className="absolute -bottom-56 -left-32 -z-10 size-[640px] rounded-full bg-[radial-gradient(closest-side,rgb(245_160_40/0.42),transparent)]"
           />
-          <div className="mx-auto grid min-h-[680px] max-w-6xl gap-12 px-6 pt-32 pb-8 lg:grid-cols-[1fr_340px] lg:items-end">
+          <div className="mx-auto flex min-h-[680px] max-w-6xl px-6 pt-32 pb-10">
             <div className="flex flex-col justify-between gap-16 self-stretch">
               <div>
                 <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-[11px] font-medium tracking-[0.12em] text-white/80 uppercase ring-1 ring-white/15">
@@ -154,7 +112,6 @@ export default function HomePage() {
                 ))}
               </dl>
             </div>
-            <ExampleCheck />
           </div>
         </div>
       </section>
