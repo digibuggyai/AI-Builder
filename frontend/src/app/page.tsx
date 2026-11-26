@@ -66,10 +66,10 @@ export default function HomePage() {
     <>
       <section className="px-3 pt-3">
         <div className="relative isolate overflow-hidden rounded-[28px] bg-[#0a0a0c] text-white">
-          <LivePc className="absolute top-1/2 right-[-18%] -z-10 h-[105%] -translate-y-1/2 opacity-60 sm:right-[-8%] lg:right-[-3%] lg:h-[118%] lg:opacity-100" />
+          <LivePc className="absolute top-1/2 right-[-12%] -z-10 w-[85%] -translate-y-1/2 opacity-35 [mask-image:radial-gradient(closest-side,black_72%,transparent)] sm:w-[60%] lg:right-[3%] lg:w-[min(44%,540px)] lg:opacity-100" />
           <div
             aria-hidden
-            className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#0a0a0c_22%,rgb(10_10_12/0.85)_38%,rgb(10_10_12/0)_58%)]"
+            className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#0a0a0c_28%,rgb(10_10_12/0)_55%)]"
           />
           <div
             aria-hidden
