@@ -64,24 +64,16 @@ function Eyebrow({ children, light }: { children: React.ReactNode; light?: boole
 export default function HomePage() {
   return (
     <>
-      <section className="px-3 pt-3">
-        <div className="relative isolate overflow-hidden rounded-[28px] bg-[#0a0a0c] text-white">
-          <LivePc className="absolute top-1/2 right-[-12%] -z-10 w-[85%] -translate-y-1/2 opacity-35 [mask-image:radial-gradient(closest-side,black_72%,transparent)] sm:w-[60%] lg:right-[3%] lg:w-[min(44%,540px)] lg:opacity-100" />
-          <div
-            aria-hidden
-            className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#0a0a0c_28%,rgb(10_10_12/0)_55%)]"
-          />
-          <div
-            aria-hidden
-            className="absolute -bottom-56 -left-32 -z-10 size-[640px] rounded-full bg-[radial-gradient(closest-side,rgb(245_160_40/0.42),transparent)]"
-          />
-          <div className="mx-auto flex min-h-[680px] max-w-6xl px-6 pt-32 pb-10">
+      <section className="relative isolate overflow-hidden bg-[#0a0a0c] text-white">
+        <div
+          aria-hidden
+          className="absolute -bottom-56 -left-32 -z-10 size-[640px] rounded-full bg-[radial-gradient(closest-side,rgb(245_160_40/0.42),transparent)]"
+        />
+        <div className="relative mx-auto flex min-h-[min(100svh,860px)] max-w-6xl px-5 pt-32 pb-12">
+          <LivePc className="pc-fade absolute top-1/2 right-[-20%] -z-10 w-[90%] -translate-y-1/2 opacity-35 sm:right-[-6%] sm:w-[62%] lg:right-0 lg:w-[min(48%,560px)] lg:opacity-100" />
             <div className="flex flex-col justify-between gap-16 self-stretch">
               <div>
-                <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-[11px] font-medium tracking-[0.12em] text-white/80 uppercase ring-1 ring-white/15">
-                  PC builder · every part checked
-                </span>
-                <h1 className="mt-6 max-w-xl font-display text-[clamp(38px,5.2vw,68px)] leading-[1.02] font-semibold tracking-[-0.04em]">
+                <h1 className="max-w-xl font-display text-[clamp(38px,5.2vw,68px)] leading-[1.02] font-semibold tracking-[-0.04em]">
                   Build a PC that
                   <br />
                   <span className="text-white/50">works the first time.</span>
@@ -112,7 +104,6 @@ export default function HomePage() {
                 ))}
               </dl>
             </div>
-          </div>
         </div>
       </section>
 
@@ -278,8 +269,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="px-3 pb-3">
-        <div className="relative isolate overflow-hidden rounded-[28px] bg-[#0a0a0c] px-6 py-24 text-center text-white sm:py-28">
+      <section>
+        <div className="relative isolate overflow-hidden bg-[#0a0a0c] px-6 py-24 text-center text-white sm:py-28">
           <span
             aria-hidden
             className="pointer-events-none absolute inset-x-0 bottom-[-0.18em] -z-10 font-display text-[19vw] leading-none font-extrabold tracking-[-0.06em] whitespace-nowrap text-white/[0.04] select-none"

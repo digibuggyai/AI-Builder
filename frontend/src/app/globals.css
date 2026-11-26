@@ -230,6 +230,13 @@
   animation: rgb-cycle 14s linear infinite;
 }
 
+.pc-fade {
+  -webkit-mask-image: radial-gradient(50% 50% at 52% 54%, #000 72%, transparent 100%), linear-gradient(to bottom, #000 80%, transparent 97%);
+  -webkit-mask-composite: source-in;
+  mask-image: radial-gradient(50% 50% at 52% 54%, #000 72%, transparent 100%), linear-gradient(to bottom, #000 80%, transparent 97%);
+  mask-composite: intersect;
+}
+
 .fan-blur {
   background: repeating-conic-gradient(from 0deg, rgb(50 25 110 / 0.38) 0deg 9deg, rgb(255 255 255 / 0.12) 9deg 14deg, transparent 14deg 40deg);
   -webkit-mask: radial-gradient(circle, transparent 17%, #000 22%, #000 88%, transparent 94%);
