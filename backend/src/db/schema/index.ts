@@ -11,4 +11,5 @@ export * from "./cases";
 export * from "./monitors";
 
 export * from "./pricing";
+export * from "./catalog";
 export * from "./builds";

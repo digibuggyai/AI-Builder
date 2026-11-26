@@ -13,7 +13,8 @@
     "db:check": "node scripts/check-connection.mjs",
     "db:seed": "tsx scripts/seed.ts",
     "specs:extract": "tsx scripts/extract-specs.ts",
-    "prices:sync": "tsx scripts/sync-prices.ts"
+    "prices:sync": "tsx scripts/sync-prices.ts",
+    "sheet:sync": "tsx scripts/sync-sheet.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.10.0",
@@ -22,6 +23,7 @@
     "csv-parse": "^7.0.3",
     "dotenv": "^18.0.10",
     "drizzle-orm": "^0.45.4",
+    "exceljs": "^4.4.0",
     "hono": "^4.13.19",
     "postgres": "^4.1.1",
     "tsx": "^4.23.15",
